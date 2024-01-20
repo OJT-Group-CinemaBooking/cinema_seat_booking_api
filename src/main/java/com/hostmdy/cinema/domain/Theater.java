@@ -1,9 +1,16 @@
 package com.hostmdy.cinema.domain;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,5 +26,13 @@ public class Theater {
 	private Long id;
 	
 	private String name;
+	
+	@ManyToOne
+	@JoinColumn(name = "seat_pattern_id")
+	private SeatPattern seatPattern;
+	
+	@OneToMany(mappedBy = "theater")
+	@JsonIgnore
+	private List<ShowTime> showTime;
 
 }
