@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.hostmdy.cinema.domain.BookSeat;
 import com.hostmdy.cinema.domain.Seat;
 import com.hostmdy.cinema.domain.SeatPattern;
-import com.hostmdy.cinema.domain.SeatPosition;
 import com.hostmdy.cinema.domain.ShowTime;
 import com.hostmdy.cinema.domain.Theater;
 import com.hostmdy.cinema.repository.BookSeatRepository;
@@ -57,35 +56,11 @@ public class ShowTimeServiceImpl implements ShowTimeService{
 		showTime.setTheater(theater);
 		ShowTime createdShowTime = saveShowTime(showTime);
 		
-		createBookSeat(theater,createdShowTime);
 		
 		return showTime;
 	}
 	
-	private void createBookSeat(Theater theater,ShowTime showTime) {
-		SeatPattern seatPattern = theater.getSeatPattern();
-		List<SeatPosition> seatPositions = seatPattern.getSeatPosition();
-		String[] alpherbet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S"};
-		int alpherbetIndex = 0;
-		for(SeatPosition position : seatPositions) {
-			for(int i = 0;i < position.getRowCount();i++) {
-				for(int j = 0;j < position.getColumnCount();j++) {
-					BookSeat bookSeat = new BookSeat();
-					bookSeat.setSeatNumber(""+alpherbet[alpherbetIndex]+"-"+(j+1)+"");
-					bookSeat.setTaken(false);
-					bookSeat.setShowTime(showTime);
-					
-					Seat seat = seatRepository.findByType(position.getType());
-					
-					bookSeat.setSeat(seat);
-					
-					bookSeatRepository.save(bookSeat);
-				}
-				alpherbetIndex++;
-			}
-			
-		}
-	}
+	
 
 	@Override
 	public Optional<ShowTime> getShowTimeById(Long showTimeId) {

@@ -1,7 +1,7 @@
 package com.hostmdy.cinema.exception;
 
 
-public class DadabaseResourceNotFoundException extends RuntimeException{
+public class DatabaseResourceNotFoundException extends RuntimeException{
 
 	/**
 	 * 
@@ -13,7 +13,7 @@ public class DadabaseResourceNotFoundException extends RuntimeException{
 	private final String message;
 	
 	
-	public DadabaseResourceNotFoundException(String entity, String field, String message) {
+	public DatabaseResourceNotFoundException(String entity, String field, String message) {
 		super(message);
 		this.entity = entity;
 		this.field = field;

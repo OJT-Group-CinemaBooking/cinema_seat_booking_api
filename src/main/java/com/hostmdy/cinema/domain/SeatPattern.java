@@ -1,14 +1,13 @@
 package com.hostmdy.cinema.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,14 +23,16 @@ public class SeatPattern {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private Integer seatTypeNumber;
-	private String image;
+	private SeatType seatType;
+	private Integer price;
+	private Integer rowCount;
+	private Integer columnCount;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "theater_id")
+	private Theater theater;
 	
 	@OneToMany(mappedBy = "seatPattern")
-	@JsonIgnore
-	private List<Theater> theaters = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "seatPattern")
-	private List<SeatPosition> seatPosition = new ArrayList<>();
-
+	private List<Seat> seats;
 }
