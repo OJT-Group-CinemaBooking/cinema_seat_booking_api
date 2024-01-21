@@ -2,6 +2,7 @@ package com.hostmdy.cinema.domain;
 
 import java.util.List;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class SeatPattern {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private SeatType seatType;
 	private Integer price;
 	private Integer rowCount;

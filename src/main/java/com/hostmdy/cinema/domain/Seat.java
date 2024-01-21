@@ -1,5 +1,6 @@
 package com.hostmdy.cinema.domain;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -32,5 +33,6 @@ public class Seat {
 	@JoinColumn(name = "seat_pattern_id")
 	private SeatPattern seatPattern;
 	
+
 
 }

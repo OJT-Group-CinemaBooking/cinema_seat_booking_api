@@ -5,13 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.hostmdy.cinema.domain.BookSeat;
-import com.hostmdy.cinema.domain.Seat;
-import com.hostmdy.cinema.domain.SeatPattern;
 import com.hostmdy.cinema.domain.ShowTime;
 import com.hostmdy.cinema.domain.Theater;
-import com.hostmdy.cinema.repository.BookSeatRepository;
-import com.hostmdy.cinema.repository.SeatRepository;
 import com.hostmdy.cinema.repository.ShowTimeRepository;
 import com.hostmdy.cinema.repository.TheaterRepository;
 import com.hostmdy.cinema.service.ShowTimeService;
@@ -24,8 +19,6 @@ public class ShowTimeServiceImpl implements ShowTimeService{
 	
 	private final ShowTimeRepository showTimeRepository;
 	private final TheaterRepository theaterRepository;
-	private final BookSeatRepository bookSeatRepository;
-	private final SeatRepository seatRepository;
 
 	@Override
 	public List<ShowTime> getAllShowTime() {
@@ -59,8 +52,7 @@ public class ShowTimeServiceImpl implements ShowTimeService{
 		
 		return showTime;
 	}
-	
-	
+
 
 	@Override
 	public Optional<ShowTime> getShowTimeById(Long showTimeId) {

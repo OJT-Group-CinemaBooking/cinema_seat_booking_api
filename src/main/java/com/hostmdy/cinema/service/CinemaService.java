@@ -7,7 +7,7 @@ import com.hostmdy.cinema.domain.Cinema;
 
 public interface CinemaService {
 	List<Cinema> getAllCinema();
-	
+
 	Cinema saveCinema(Cinema cinema);
 	
 	Optional<Cinema> getCinemaById(Long cinemaId);

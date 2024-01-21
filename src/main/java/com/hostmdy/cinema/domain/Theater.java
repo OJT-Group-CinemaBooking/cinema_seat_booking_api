@@ -23,7 +23,7 @@ public class Theater {
 	private Long id;
 	
 	private String name;
-	
+
 	@OneToMany(mappedBy = "theater")
 	private List<SeatPattern> seatPatterns;
 	

@@ -20,9 +20,7 @@ import com.hostmdy.cinema.repository.MovieGenereRepository;
 import com.hostmdy.cinema.repository.MovieRepository;
 
 import com.hostmdy.cinema.domain.Seat;
-import com.hostmdy.cinema.domain.SeatPattern;
 import com.hostmdy.cinema.domain.SeatType;
-import com.hostmdy.cinema.domain.Theater;
 import com.hostmdy.cinema.repository.SeatPatternRepository;
 import com.hostmdy.cinema.repository.SeatRepository;
 import com.hostmdy.cinema.repository.TheaterRepository;
@@ -263,9 +261,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		theBoyMovieCrew2.setCrew(koshibasaki);
 		theBoyMovieCrew2.setMovie(theBoyandTheHeron);
 		movieCrewRepository.save(theBoyMovieCrew2);
-		
-		
-		
 		
 		
 		Seat seat1 = new Seat();
