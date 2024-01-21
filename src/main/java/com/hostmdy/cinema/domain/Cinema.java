@@ -20,6 +20,6 @@ public class Cinema {
 	
 	private String name;
 	private String location;
-	private byte[] image;
+	private String image;
 
 }
