@@ -95,7 +95,7 @@ public class SeatPatternServiceImpl implements SeatPatternService{
 	public SeatPattern updateSeatPattern(Long theaterId, SeatPattern newSeatPattern) {
 		// TODO Auto-generated method stub
 		
-		Optional<SeatPattern> oldSeatPatternOptional = getSeatPatternById(theaterId);
+		Optional<SeatPattern> oldSeatPatternOptional = getSeatPatternById(newSeatPattern.getId());
 		if(oldSeatPatternOptional.isEmpty()) {
 			throw new DatabaseResourceNotFoundException("seatPattern", "id", "seatPattern id not found in Database");
 		}
