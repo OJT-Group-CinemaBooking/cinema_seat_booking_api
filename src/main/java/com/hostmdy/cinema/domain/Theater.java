@@ -1,5 +1,6 @@
 package com.hostmdy.cinema.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,9 +36,9 @@ public class Theater {
 	private Cinema cinema;
 
 	@OneToMany(mappedBy = "theater")
-	private List<SeatPattern> seatPatterns;
+	private List<SeatPattern> seatPatterns = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "theater")
-	private List<ShowTime> showTime;
+	private List<ShowTime> showTime = new ArrayList<>();
 
 }

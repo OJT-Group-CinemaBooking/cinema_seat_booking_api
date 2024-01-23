@@ -20,9 +20,6 @@ import com.hostmdy.cinema.repository.GenereRepository;
 import com.hostmdy.cinema.repository.MovieCrewRepository;
 import com.hostmdy.cinema.repository.MovieGenereRepository;
 import com.hostmdy.cinema.repository.MovieRepository;
-
-import com.hostmdy.cinema.domain.Seat;
-import com.hostmdy.cinema.domain.SeatType;
 import com.hostmdy.cinema.domain.Theater;
 import com.hostmdy.cinema.repository.SeatPatternRepository;
 import com.hostmdy.cinema.repository.SeatRepository;
@@ -67,6 +64,8 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+		
+		// generes data
 		Genere action = new Genere();
 		action.setName("Action");
 		genereRepository.save(action);
@@ -223,6 +222,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		zombie.setName("Zombie");
 		genereRepository.save(zombie);
 		
+		// sample crews
 		Crew koshibasaki = new Crew();
 		koshibasaki.setName("KO SHIBASAKI");
 		koshibasaki.setRole("Starring");
@@ -233,6 +233,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		hayao.setRole("Director");
 		crewRepository.save(hayao);
 		
+		// sample movie
 		Movie theBoyandTheHeron = new Movie();
 		theBoyandTheHeron.setTitle("The Boy And The Heron");
 		theBoyandTheHeron.setReleaseDate(LocalDate.of(2023, 07, 14));
@@ -269,17 +270,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		movieCrewRepository.save(theBoyMovieCrew2);
 		
 		
-		Seat seat1 = new Seat();
-		seat1.setType(SeatType.NORMAL);
-		seat1.setPrice(8000);
-		
-		seatRepository.save(seat1);
-		
-		Seat seat2 = new Seat();
-		seat2.setType(SeatType.PREMIUM);
-		seat2.setPrice(12000);
-		
-		seatRepository.save(seat2);
 		
 		Cinema cinema1 = new Cinema();
 		cinema1.setName("Mingalar");
