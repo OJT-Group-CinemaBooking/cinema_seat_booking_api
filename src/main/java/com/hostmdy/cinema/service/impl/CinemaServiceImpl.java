@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.hostmdy.cinema.domain.Cinema;
+import com.hostmdy.cinema.domain.Theater;
 import com.hostmdy.cinema.exception.DatabaseResourceNotFoundException;
 import com.hostmdy.cinema.repository.CinemaRepository;
+import com.hostmdy.cinema.repository.TheaterRepository;
 import com.hostmdy.cinema.service.CinemaService;
 
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CinemaServiceImpl implements CinemaService{
 	private final CinemaRepository cinemaRepository;
+	private final TheaterRepository theaterRepository;
 
 	@Override
 	public List<Cinema> getAllCinema() {
@@ -32,8 +35,14 @@ public class CinemaServiceImpl implements CinemaService{
 	@Override
 	public Boolean deleteCinemaById(Long cinemaId) {
 		// TODO Auto-generated method stub
-		if(getCinemaById(cinemaId).isEmpty()) {
+		Optional<Cinema> cinemaOptional = getCinemaById(cinemaId);
+		if(cinemaOptional.isEmpty()) {
 			return false;
+		}
+		Cinema cinema = cinemaOptional.get();
+		List<Theater> theaters = theaterRepository.findByCinema(cinema);
+		for(Theater theater : theaters) {
+			theater.setCinema(null);
 		}
 		cinemaRepository.deleteById(cinemaId);
 		return true;
@@ -58,9 +67,7 @@ public class CinemaServiceImpl implements CinemaService{
 	@Override
 	public Cinema updateCinema(Cinema cinema) {
 		// TODO Auto-generated method stub
-		
-		
-		return saveCinema(getCinemaById(cinema.getId()).get());
+		return saveCinema(cinema);
 	}
 
 }
