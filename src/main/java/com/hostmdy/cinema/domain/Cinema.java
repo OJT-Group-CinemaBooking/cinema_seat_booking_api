@@ -1,9 +1,13 @@
 package com.hostmdy.cinema.domain;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +24,8 @@ public class Cinema {
 	
 	private String name;
 	private String location;
-	private String image;
+	
+	@OneToMany(mappedBy = "cinema",cascade = CascadeType.ALL)
+	private List<Theater> theater;
 
 }
