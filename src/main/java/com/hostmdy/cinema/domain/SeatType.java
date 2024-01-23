@@ -2,7 +2,9 @@ package com.hostmdy.cinema.domain;
 
 public enum SeatType {
 	
-	NORMAL,
+	STANDARD,
 	PREMIUM,
-	TWIN
+	TWIN,
+	RECLINER,
+	VIP
 }

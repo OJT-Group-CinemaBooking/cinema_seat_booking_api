@@ -1,5 +1,6 @@
 package com.hostmdy.cinema.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,9 +26,9 @@ public class Theater {
 	private String name;
 
 	@OneToMany(mappedBy = "theater")
-	private List<SeatPattern> seatPatterns;
+	private List<SeatPattern> seatPatterns = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "theater")
-	private List<ShowTime> showTime;
+	private List<ShowTime> showTime = new ArrayList<>();
 
 }

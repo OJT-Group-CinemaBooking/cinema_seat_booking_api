@@ -22,7 +22,6 @@ public class BookSeat {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String seatNumber;
 	private Boolean taken;
 	
 	@ManyToOne

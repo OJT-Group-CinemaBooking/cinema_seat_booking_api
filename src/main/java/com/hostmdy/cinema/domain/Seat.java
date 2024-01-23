@@ -1,6 +1,8 @@
 package com.hostmdy.cinema.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -26,11 +28,12 @@ public class Seat {
 	@Enumerated(EnumType.STRING)
 	private SeatType type;
 	private Integer price;
-	private Integer rowCount;
-	private Integer columnCount;
+	private Integer rowNo;
+	private Integer columnNo;
 	
 	@ManyToOne
 	@JoinColumn(name = "seat_pattern_id")
+	@JsonIgnore
 	private SeatPattern seatPattern;
 	
 
