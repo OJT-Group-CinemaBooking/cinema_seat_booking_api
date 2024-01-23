@@ -8,17 +8,18 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.hostmdy.cinema.domain.Cinema;
 import com.hostmdy.cinema.domain.Crew;
 import com.hostmdy.cinema.domain.Genere;
 import com.hostmdy.cinema.domain.Movie;
 import com.hostmdy.cinema.domain.MovieCrew;
 import com.hostmdy.cinema.domain.MovieGenere;
+import com.hostmdy.cinema.repository.CinemaRepository;
 import com.hostmdy.cinema.repository.CrewRepository;
 import com.hostmdy.cinema.repository.GenereRepository;
 import com.hostmdy.cinema.repository.MovieCrewRepository;
 import com.hostmdy.cinema.repository.MovieGenereRepository;
 import com.hostmdy.cinema.repository.MovieRepository;
-
 import com.hostmdy.cinema.domain.Theater;
 import com.hostmdy.cinema.repository.SeatPatternRepository;
 import com.hostmdy.cinema.repository.SeatRepository;
@@ -42,6 +43,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	
 	@Autowired
 	public MovieGenereRepository movieGenereRepository;
+	
+	@Autowired
+	public CinemaRepository cinemaRepository;
 	
 	@Autowired
 	public TheaterRepository theaterRepository;
@@ -266,9 +270,17 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		movieCrewRepository.save(theBoyMovieCrew2);
 		
 		
-		Theater sampleTheater = new Theater();
-		sampleTheater.setName("SampleTheater");
-		theaterRepository.save(sampleTheater);
+		
+		Cinema cinema1 = new Cinema();
+		cinema1.setName("Mingalar");
+		cinema1.setLocation("Mandalay");
+		cinemaRepository.save(cinema1);
+		
+		Theater theater1 = new Theater();
+		theater1.setName("Theater-1");
+		theater1.setScreen("HDR");
+		theater1.setCinema(cinema1);
+		theaterRepository.save(theater1);
 	}
 
 }
