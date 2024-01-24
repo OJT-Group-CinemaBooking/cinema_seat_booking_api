@@ -2,7 +2,10 @@ package com.hostmdy.cinema.domain;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +36,14 @@ public class ShowTime {
 	private Theater theater;
 	
 	@OneToMany(mappedBy = "showTime")
-	private List<BookSeat> bookSeats;
+	private List<BookSeat> bookSeats = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "showTime")
+	@JsonIgnore
+	private List<Ticket> tickets = new ArrayList<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "movie_id")
+	private Movie movie;
 
 }
