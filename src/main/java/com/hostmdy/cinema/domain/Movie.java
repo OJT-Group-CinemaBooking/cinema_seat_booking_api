@@ -45,10 +45,13 @@ public class Movie {
 	private LocalDateTime updatedAt;
 	
 	@OneToMany(mappedBy = "movie")
-	List<MovieGenere> movieGenere = new ArrayList<>();
+	private List<MovieGenere> movieGenere = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "movie")
-	List<MovieCrew> movieCrew = new ArrayList<>();
+	private List<MovieCrew> movieCrew = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "movie")
+	private List<ShowTime> showTimes = new ArrayList<>();
 	
 	@PrePersist
 	private void onPersist() {
