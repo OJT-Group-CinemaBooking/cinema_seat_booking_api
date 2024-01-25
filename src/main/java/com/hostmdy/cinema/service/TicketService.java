@@ -12,7 +12,7 @@ public interface TicketService {
 	
 	List<Ticket> getAllTicketsByShowTime(ShowTime showTime);
 	
-	Ticket saveTicket(Ticket ticket);
+	Ticket saveTicket(Ticket ticket, ShowTime showTime);
 	
 	Optional<Ticket> getTicketById(Long ticketId);
 	
