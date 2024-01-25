@@ -10,9 +10,15 @@ public interface ShowTimeService {
 	
 	Optional<ShowTime> getShowTimeById(Long showTimeId);
 	
+	List<ShowTime> getShowTimeByMovieId(Long movieId);
+	
+	List<ShowTime> getShowTimeByTheaterId(Long theaterId);
+	
 	ShowTime saveShowTime(ShowTime showTime);
 	
-	ShowTime createShowTime(ShowTime showTime,Long theaterId);
+	ShowTime createShowTime(ShowTime showTime,Long theaterId,Long movieId);
 	
-	void deleteShowTime(Long showTimeId);
+	ShowTime updateShowTime(ShowTime showTime);
+	
+	Boolean deleteShowTime(Long showTimeId);
 }
