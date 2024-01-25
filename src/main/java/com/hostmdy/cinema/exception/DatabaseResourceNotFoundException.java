@@ -1,6 +1,5 @@
 package com.hostmdy.cinema.exception;
 
-
 public class DatabaseResourceNotFoundException extends RuntimeException{
 
 	/**
