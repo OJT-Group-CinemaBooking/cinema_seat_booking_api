@@ -1,5 +1,6 @@
 package com.hostmdy.cinema.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -26,6 +27,6 @@ public class Cinema {
 	private String location;
 	
 	@OneToMany(mappedBy = "cinema",cascade = CascadeType.ALL)
-	private List<Theater> theater;
+	private List<Theater> theater = new ArrayList<>();
 
 }
