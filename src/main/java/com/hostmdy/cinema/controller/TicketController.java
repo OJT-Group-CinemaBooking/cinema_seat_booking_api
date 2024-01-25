@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hostmdy.cinema.domain.ShowTime;
 import com.hostmdy.cinema.domain.Ticket;
 import com.hostmdy.cinema.exception.DatabaseResourceNotFoundException;
+import com.hostmdy.cinema.payload.TicketRequest;
 import com.hostmdy.cinema.service.TicketService;
 
 import lombok.RequiredArgsConstructor;
@@ -45,16 +46,16 @@ public class TicketController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket){
-		return ResponseEntity.ok(ticketService.saveTicket(ticket));
+	public ResponseEntity<Ticket> createTicket(@RequestBody TicketRequest ticketRequest){
+		return ResponseEntity.ok(ticketService.saveTicket(ticketRequest.getTicket(), ticketRequest.getShowTime()));
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<Ticket> updateTicket(@RequestBody Ticket ticket){
-		if(ticket.getId() == null) {
+	public ResponseEntity<Ticket> updateTicket(@RequestBody TicketRequest ticketRequest){
+		if(ticketRequest.getTicket().getId() == null) {
 			return ResponseEntity.badRequest().build();
 		}
-		return ResponseEntity.ok(ticketService.saveTicket(ticket));
+		return ResponseEntity.ok(ticketService.saveTicket(ticketRequest.getTicket(), ticketRequest.getShowTime()));
 	}
 	
 	@DeleteMapping("/{ticketId}/delete")
