@@ -36,10 +36,10 @@ public class Theater {
 	private Cinema cinema;
 
 	@OneToMany(mappedBy = "theater")
+	@JsonIgnore
 	private List<SeatPattern> seatPatterns = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "theater")
-	@JsonIgnore
 	private List<ShowTime> showTime = new ArrayList<>();
 
 }

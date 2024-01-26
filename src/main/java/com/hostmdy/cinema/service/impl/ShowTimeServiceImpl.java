@@ -68,6 +68,7 @@ public class ShowTimeServiceImpl implements ShowTimeService{
 		// TODO Auto-generated method stub
 		showTime.setTheater(getShowtimeByTheaterId(theaterId));
 		showTime.setMovie(getShowtimeByMovieId(movieId));
+		showTime.setConnectedMovieId(movieId);
 		
 		return saveShowTime(showTime);
 	}
