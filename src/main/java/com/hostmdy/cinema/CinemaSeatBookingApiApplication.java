@@ -277,10 +277,27 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		cinemaRepository.save(cinema1);
 		
 		Theater theater1 = new Theater();
-		theater1.setName("Theater-1");
+		theater1.setName("Mingalar Theater-1");
 		theater1.setScreen("HDR");
 		theater1.setCinema(cinema1);
 		theaterRepository.save(theater1);
+		
+		Theater theater2 = new Theater();
+		theater2.setName("Mingalar Theater-2");
+		theater2.setScreen("IMAX");
+		theater2.setCinema(cinema1);
+		theaterRepository.save(theater2);
+		
+		Cinema cinema2 = new Cinema();
+		cinema2.setName("Major");
+		cinema2.setLocation("Mandalay");
+		cinemaRepository.save(cinema2);
+		
+		Theater theater3 = new Theater();
+		theater3.setName("Major Theater-1");
+		theater3.setScreen("HDR");
+		theater3.setCinema(cinema2);
+		theaterRepository.save(theater3);
 	}
 
 }
