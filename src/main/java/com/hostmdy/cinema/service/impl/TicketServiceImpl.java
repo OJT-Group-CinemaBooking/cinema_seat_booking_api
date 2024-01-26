@@ -33,9 +33,11 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public Ticket saveTicket(Ticket ticket) {
+	public Ticket saveTicket(Ticket ticket, ShowTime showTime) {
 		// TODO Auto-generated method stub
-		showTimeRepository.save(ticket.getShowTime());
+		showTime.getTickets().add(ticket);
+		showTimeRepository.save(showTime);
+		ticket.setShowTime(showTime);
 		return ticketRepository.save(ticket);
 	}
 

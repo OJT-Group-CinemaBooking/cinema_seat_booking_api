@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,9 +30,9 @@ public class ShowTimeController {
 		return ResponseEntity.ok(showTimeService.getAllShowTime());
 	}
 	
-	@PostMapping("/create/{theaterId}")
-	public ResponseEntity<ShowTime> createShowTime(@RequestBody ShowTime showTime,@PathVariable Long theaterId){
-		return ResponseEntity.ok(showTimeService.createShowTime(showTime, theaterId));
+	@PostMapping("/{theaterId}/{movieId}/create")
+	public ResponseEntity<ShowTime> createShowTime(@RequestBody ShowTime showTime,@PathVariable Long theaterId,@PathVariable Long movieId){
+		return ResponseEntity.ok(showTimeService.createShowTime(showTime, theaterId,movieId));
 	}
 	
 	@GetMapping("/{showTimeId}")
@@ -42,5 +44,28 @@ public class ShowTimeController {
 		
 		return ResponseEntity.ok(showTimeOptional.get());
 	}
+	
+	@GetMapping("/movie/{movieId}")
+	public ResponseEntity<List<ShowTime>> getShowTimeByMovieId(@PathVariable Long movieId){
+		return ResponseEntity.ok(showTimeService.getShowTimeByMovieId(movieId));
+	}
+	
+	@GetMapping("/theater/{theaterId}")
+	public ResponseEntity<List<ShowTime>> getShowTimeByTheaterId(@PathVariable Long theaterId){
+		return ResponseEntity.ok(showTimeService.getShowTimeByTheaterId(theaterId));
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<ShowTime> updateShowTime(@RequestBody ShowTime showTime){
+		return ResponseEntity.ok(showTimeService.updateShowTime(showTime));
+	}
 
+	@DeleteMapping("/{showTimeId}/delete")
+	public ResponseEntity<Long> deleteShowTimeById(@PathVariable Long showTimeId){
+		Boolean delete = showTimeService.deleteShowTime(showTimeId);
+		if(!delete) {
+			return ResponseEntity.badRequest().build();
+		}
+		return ResponseEntity.ok(showTimeId);
+	}
 }
