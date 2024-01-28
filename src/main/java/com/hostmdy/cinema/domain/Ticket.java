@@ -25,6 +25,7 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	private String theaterName;
 	private String movieTitle;
 	private Integer totalPrice;
 	private Integer actualPrice;

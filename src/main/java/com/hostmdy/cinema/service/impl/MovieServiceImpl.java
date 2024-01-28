@@ -10,9 +10,12 @@ import com.hostmdy.cinema.domain.Genere;
 import com.hostmdy.cinema.domain.Movie;
 import com.hostmdy.cinema.domain.MovieCrew;
 import com.hostmdy.cinema.domain.MovieGenere;
+import com.hostmdy.cinema.domain.ShowTime;
+import com.hostmdy.cinema.exception.DatabaseResourceNotFoundException;
 import com.hostmdy.cinema.repository.MovieCrewRepository;
 import com.hostmdy.cinema.repository.MovieGenereRepository;
 import com.hostmdy.cinema.repository.MovieRepository;
+import com.hostmdy.cinema.repository.ShowTimeRepository;
 import com.hostmdy.cinema.service.MovieService;
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +26,7 @@ public class MovieServiceImpl implements MovieService{
 	private final MovieRepository movieRepository;
 	private final MovieGenereRepository movieGenereRepository;
 	private final MovieCrewRepository movieCrewRepository;
+	private final ShowTimeRepository showTimeRepository;
 
 	@Override
 	public Movie saveMovie(Movie movie) {
@@ -125,6 +129,21 @@ public class MovieServiceImpl implements MovieService{
 			movieCrewRepository.deleteAll(notMatchMovieCrews);
 		}
 		return movie;
+	}
+
+	@Override
+	public Movie getMovieByShowTimeId(Long showTimeId) {
+		// TODO Auto-generated method stub
+		Optional<ShowTime> showTimeOptional = showTimeRepository.findById(showTimeId);
+		if(showTimeOptional.isEmpty()) {
+			throw new DatabaseResourceNotFoundException("ShowTime", "id", "ShowTime width id : "+showTimeId+" is not found!");
+		}
+		Optional<Movie> movieOptional = movieRepository.findByShowTime(showTimeOptional.get());
+		if(movieOptional.isEmpty()) {
+			throw new DatabaseResourceNotFoundException("Movie", "showTime", "Movie width showTimeId : "+showTimeId+" is not found!");
+		}
+		
+		return movieOptional.get();
 	}
 	
 	

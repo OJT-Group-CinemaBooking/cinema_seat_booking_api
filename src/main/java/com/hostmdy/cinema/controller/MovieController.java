@@ -70,5 +70,10 @@ public class MovieController {
 	public ResponseEntity<Movie> addCrew(@PathVariable Long movieId,@RequestBody List<Crew> crewList) {
 		return ResponseEntity.ok(movieService.addCrew(movieId, crewList));
 	}
+	
+	@GetMapping("/time/{showTimeId}")
+	public ResponseEntity<Movie> getMovieByShowTimeId(@PathVariable Long showTimeId) {
+		return ResponseEntity.ok(movieService.getMovieByShowTimeId(showTimeId));
+	}
 
 }

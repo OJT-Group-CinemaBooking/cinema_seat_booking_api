@@ -55,7 +55,7 @@ public class Movie {
 	
 	@OneToMany(mappedBy = "movie")
 	@JsonIgnore
-	private List<ShowTime> showTimes = new ArrayList<>();
+	private List<ShowTime> showTime = new ArrayList<>();
 	
 	@PrePersist
 	private void onPersist() {
