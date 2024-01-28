@@ -1,7 +1,5 @@
 package com.hostmdy.cinema.domain;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,15 +12,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Cupon {
+public class UserPayment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String cuponCode;
-	private Integer customerCount;
-	private LocalDate expiryDate;
-	private Integer discount;
+	private String holderName;
+	private Integer cardNumber;
+	private CardType cardType;
+	private Integer expiryMonth;
+	private Integer expiryYear;
+	
+
 
 }

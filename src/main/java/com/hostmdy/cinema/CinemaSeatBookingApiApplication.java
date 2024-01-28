@@ -21,9 +21,11 @@ import com.hostmdy.cinema.repository.MovieCrewRepository;
 import com.hostmdy.cinema.repository.MovieGenereRepository;
 import com.hostmdy.cinema.repository.MovieRepository;
 import com.hostmdy.cinema.domain.Theater;
+import com.hostmdy.cinema.domain.User;
 import com.hostmdy.cinema.repository.SeatPatternRepository;
 import com.hostmdy.cinema.repository.SeatRepository;
 import com.hostmdy.cinema.repository.TheaterRepository;
+import com.hostmdy.cinema.repository.UserRepository;
 
 
 @SpringBootApplication
@@ -55,6 +57,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	
 	@Autowired
 	public SeatRepository seatRepository;
+	
+	@Autowired
+	public UserRepository userRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CinemaSeatBookingApiApplication.class, args);
@@ -298,6 +303,16 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		theater3.setScreen("HDR");
 		theater3.setCinema(cinema2);
 		theaterRepository.save(theater3);
+		
+		User user1 = new User();
+		user1.setFirstname("Mg");
+		user1.setLastname("Mg");
+		user1.setUsername("mm001");
+		user1.setEmail("mm@gmail.com");
+		user1.setPassword("1234");
+		user1.setRole("user");
+		
+		userRepository.save(user1);
 	}
 
 }
