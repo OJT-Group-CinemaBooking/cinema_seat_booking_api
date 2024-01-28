@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CustomerPayment {
+public class UserPayment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
