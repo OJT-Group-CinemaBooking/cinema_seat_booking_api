@@ -22,7 +22,7 @@ public class BookSeat {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private Boolean taken;
+	private boolean taken;
 	
 	@ManyToOne
 	@JoinColumn(name = "seat_id")

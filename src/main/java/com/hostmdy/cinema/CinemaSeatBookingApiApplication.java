@@ -2,6 +2,7 @@ package com.hostmdy.cinema;
 
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +15,9 @@ import com.hostmdy.cinema.domain.Genere;
 import com.hostmdy.cinema.domain.Movie;
 import com.hostmdy.cinema.domain.MovieCrew;
 import com.hostmdy.cinema.domain.MovieGenere;
+import com.hostmdy.cinema.domain.SeatPattern;
+import com.hostmdy.cinema.domain.SeatType;
+import com.hostmdy.cinema.domain.ShowTime;
 import com.hostmdy.cinema.repository.CinemaRepository;
 import com.hostmdy.cinema.repository.CrewRepository;
 import com.hostmdy.cinema.repository.GenereRepository;
@@ -21,9 +25,10 @@ import com.hostmdy.cinema.repository.MovieCrewRepository;
 import com.hostmdy.cinema.repository.MovieGenereRepository;
 import com.hostmdy.cinema.repository.MovieRepository;
 import com.hostmdy.cinema.domain.Theater;
-import com.hostmdy.cinema.repository.SeatPatternRepository;
 import com.hostmdy.cinema.repository.SeatRepository;
+import com.hostmdy.cinema.repository.ShowTimeRepository;
 import com.hostmdy.cinema.repository.TheaterRepository;
+import com.hostmdy.cinema.service.SeatPatternService;
 
 
 @SpringBootApplication
@@ -51,10 +56,13 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	public TheaterRepository theaterRepository;
 	
 	@Autowired
-	public SeatPatternRepository seatPatternRepository;
+	public SeatPatternService seatPatternService;
 	
 	@Autowired
 	public SeatRepository seatRepository;
+	
+	@Autowired
+	public ShowTimeRepository showTimeRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CinemaSeatBookingApiApplication.class, args);
@@ -298,6 +306,66 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		theater3.setScreen("HDR");
 		theater3.setCinema(cinema2);
 		theaterRepository.save(theater3);
+		
+		
+		SeatPattern standardSeatPattern = new SeatPattern();
+		standardSeatPattern.setSeatPrice(5000);
+		standardSeatPattern.setSeatType(SeatType.STANDARD);
+		standardSeatPattern.setRowCount(1);
+		standardSeatPattern.setColumnCount(5);
+		seatPatternService.createSeatPattern(theater3.getId(), standardSeatPattern);
+		
+		SeatPattern premiumSeatPattern = new SeatPattern();
+		premiumSeatPattern.setSeatPrice(6000);
+		premiumSeatPattern.setSeatType(SeatType.PREMIUM);
+		premiumSeatPattern.setRowCount(2);
+		premiumSeatPattern.setColumnCount(5);
+		seatPatternService.createSeatPattern(theater3.getId(), premiumSeatPattern);
+		
+		
+		ShowTime time1 = new ShowTime();
+		time1.setShowDate(LocalDate.of(2024, 1, 30));
+		time1.setShowTime(LocalTime.of(8, 30));
+		time1.setMovie(theBoyandTheHeron);
+		time1.setTheater(theater1);
+		showTimeRepository.save(time1);
+		
+		ShowTime time2 = new ShowTime();
+		time2.setShowDate(LocalDate.of(2024, 1, 27));
+		time2.setShowTime(LocalTime.of(11, 00));
+		time2.setMovie(theBoyandTheHeron);
+		time2.setTheater(theater1);
+		showTimeRepository.save(time2);
+
+		ShowTime time3 = new ShowTime();
+		time3.setShowDate(LocalDate.of(2024, 1, 30));
+		time3.setShowTime(LocalTime.of(14, 30));
+		time3.setMovie(theBoyandTheHeron);
+		time3.setTheater(theater1);
+		showTimeRepository.save(time3);
+		
+
+		
+		ShowTime time4 = new ShowTime();
+		time4.setShowDate(LocalDate.of(2024, 1, 30));
+		time4.setShowTime(LocalTime.of(8, 30));
+		time4.setMovie(theBoyandTheHeron);
+		time4.setTheater(theater2);
+		showTimeRepository.save(time4);
+		
+		ShowTime time5 = new ShowTime();
+		time5.setShowDate(LocalDate.of(2024, 1, 29));
+		time5.setShowTime(LocalTime.of(11, 00));
+		time5.setMovie(theBoyandTheHeron);
+		time5.setTheater(theater2);
+		showTimeRepository.save(time5);
+
+		ShowTime time6 = new ShowTime();
+		time6.setShowDate(LocalDate.of(2024, 1, 28));
+		time6.setShowTime(LocalTime.of(14, 30));
+		time6.setMovie(theBoyandTheHeron);
+		time6.setTheater(theater3);
+		showTimeRepository.save(time6);
 	}
 
 }

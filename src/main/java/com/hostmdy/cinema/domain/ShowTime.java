@@ -27,14 +27,12 @@ public class ShowTime {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private Long connectedMovieId;
 	
 	private LocalDate showDate;
 	private LocalTime showTime;
 	
 	@ManyToOne
 	@JoinColumn(name = "theater_id")
-	@JsonIgnore
 	private Theater theater;
 	
 	@OneToMany(mappedBy = "showTime")
