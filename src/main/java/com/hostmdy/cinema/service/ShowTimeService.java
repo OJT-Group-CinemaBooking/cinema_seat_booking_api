@@ -8,13 +8,13 @@ import com.hostmdy.cinema.domain.ShowTime;
 public interface ShowTimeService {
 	List<ShowTime> getAllShowTime();
 	
+	ShowTime saveShowTime(ShowTime showTime);
+	
 	Optional<ShowTime> getShowTimeById(Long showTimeId);
 	
 	List<ShowTime> getShowTimeByMovieId(Long movieId);
 	
 	List<ShowTime> getShowTimeByTheaterId(Long theaterId);
-	
-	ShowTime saveShowTime(ShowTime showTime);
 	
 	ShowTime createShowTime(ShowTime showTime,Long theaterId,Long movieId);
 	

@@ -22,5 +22,7 @@ public interface MovieService {
 	Movie addGenere(Long movieId,List<Genere> genereList);
 	
 	Movie addCrew(Long movieId,List<Crew> crewList);
+	
+	Movie getMovieByShowTimeId(Long showTimeId);
 
 }
