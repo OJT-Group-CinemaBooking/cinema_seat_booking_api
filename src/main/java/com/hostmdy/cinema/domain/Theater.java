@@ -32,7 +32,6 @@ public class Theater {
 	
 	@ManyToOne
 	@JoinColumn(name = "cinema_id")
-	@JsonIgnore
 	private Cinema cinema;
 
 	@OneToMany(mappedBy = "theater")
@@ -40,6 +39,7 @@ public class Theater {
 	private List<SeatPattern> seatPatterns = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "theater")
+	@JsonIgnore
 	private List<ShowTime> showTime = new ArrayList<>();
 
 }
