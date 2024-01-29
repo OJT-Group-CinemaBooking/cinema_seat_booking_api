@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CustomerPayment {
+public class UserPayment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +25,7 @@ public class CustomerPayment {
 	private Integer expiryMonth;
 	private Integer expiryYear;
 	
-
+	@OneToOne(mappedBy = "userPayment")
+	private User user;
 
 }

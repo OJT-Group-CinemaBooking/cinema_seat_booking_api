@@ -25,11 +25,14 @@ import com.hostmdy.cinema.repository.MovieCrewRepository;
 import com.hostmdy.cinema.repository.MovieGenereRepository;
 import com.hostmdy.cinema.repository.MovieRepository;
 import com.hostmdy.cinema.domain.Theater;
+import com.hostmdy.cinema.domain.User;
+import com.hostmdy.cinema.repository.SeatPatternRepository;
 import com.hostmdy.cinema.repository.SeatRepository;
 import com.hostmdy.cinema.repository.ShowTimeRepository;
 import com.hostmdy.cinema.repository.TheaterRepository;
 import com.hostmdy.cinema.service.SeatPatternService;
 import com.hostmdy.cinema.service.ShowTimeService;
+import com.hostmdy.cinema.repository.UserRepository;
 
 
 @SpringBootApplication
@@ -67,6 +70,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	
 	@Autowired
 	public ShowTimeService showTimeService;
+  
+  @Autowired
+	public UserRepository userRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CinemaSeatBookingApiApplication.class, args);
@@ -363,6 +369,16 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		time4.setTheater(minTheater2);
 		showTimeService.createShowTime(time4, minTheater2.getId(), theBoyandTheHeron.getId());
 		
+
+		User user1 = new User();
+		user1.setFirstname("Mg");
+		user1.setLastname("Mg");
+		user1.setUsername("mm001");
+		user1.setEmail("mm@gmail.com");
+		user1.setPassword("1234");
+		user1.setRole("user");
+		
+		userRepository.save(user1);
 	}
 
 }

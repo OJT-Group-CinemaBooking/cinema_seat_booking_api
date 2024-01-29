@@ -1,15 +1,16 @@
 package com.hostmdy.cinema.domain;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,22 +20,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Ticket {
+public class Coupon {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String theaterName;
-	private String movieTitle;
-	private Integer totalPrice;
-	private Integer actualPrice;
+	private String couponCode;
+	private Integer userCount;
+	private LocalDate expiryDate;
+	private Integer discount;
 	
-	@ManyToOne
-	@JoinColumn(name = "show_time_id")
-	private ShowTime showTime;
-	
-	@OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)
-	private List<BoughtSeat> boughtSeats = new ArrayList<>();
+	@OneToMany(mappedBy = "coupon",cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<UserCoupon> userCoupons = new ArrayList<>();
 
 }
