@@ -1,6 +1,5 @@
 package com.hostmdy.cinema.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
