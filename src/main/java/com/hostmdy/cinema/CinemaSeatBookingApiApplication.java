@@ -31,6 +31,7 @@ import com.hostmdy.cinema.repository.SeatRepository;
 import com.hostmdy.cinema.repository.ShowTimeRepository;
 import com.hostmdy.cinema.repository.TheaterRepository;
 import com.hostmdy.cinema.service.SeatPatternService;
+import com.hostmdy.cinema.service.ShowTimeService;
 import com.hostmdy.cinema.repository.UserRepository;
 
 
@@ -68,6 +69,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	public ShowTimeRepository showTimeRepository;
 	
 	@Autowired
+	public ShowTimeService showTimeService;
+  
+  @Autowired
 	public UserRepository userRepository;
 
 	public static void main(String[] args) {
@@ -285,92 +289,86 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		
 		
 		
-		Cinema cinema1 = new Cinema();
-		cinema1.setName("Mingalar");
-		cinema1.setLocation("Mandalay");
-		cinemaRepository.save(cinema1);
+		Cinema mingalar = new Cinema();
+		mingalar.setName("Mingalar");
+		mingalar.setLocation("Mandalay");
+		cinemaRepository.save(mingalar);
 		
-		Theater theater1 = new Theater();
-		theater1.setName("Mingalar Theater-1");
-		theater1.setScreen("HDR");
-		theater1.setCinema(cinema1);
-		theaterRepository.save(theater1);
+		Theater minTheater1 = new Theater();
+		minTheater1.setName("MGR I");
+		minTheater1.setScreen("HDR");
+		minTheater1.setCinema(mingalar);
+		theaterRepository.save(minTheater1);
+		// seatPattern for mingalar->minTheater1
+		SeatPattern minStandardSeatPattern = new SeatPattern();
+		minStandardSeatPattern.setSeatPrice(5500);
+		minStandardSeatPattern.setSeatType(SeatType.STANDARD);
+		minStandardSeatPattern.setRowCount(4);
+		minStandardSeatPattern.setColumnCount(20);
+		minStandardSeatPattern.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minTheater1.getId(), minStandardSeatPattern);
 		
-		Theater theater2 = new Theater();
-		theater2.setName("Mingalar Theater-2");
-		theater2.setScreen("IMAX");
-		theater2.setCinema(cinema1);
-		theaterRepository.save(theater2);
-		
-		Cinema cinema2 = new Cinema();
-		cinema2.setName("Major");
-		cinema2.setLocation("Mandalay");
-		cinemaRepository.save(cinema2);
-		
-		Theater theater3 = new Theater();
-		theater3.setName("Major Theater-1");
-		theater3.setScreen("HDR");
-		theater3.setCinema(cinema2);
-		theaterRepository.save(theater3);
-		
-		SeatPattern standardSeatPattern = new SeatPattern();
-		standardSeatPattern.setSeatPrice(5000);
-		standardSeatPattern.setSeatType(SeatType.STANDARD);
-		standardSeatPattern.setRowCount(1);
-		standardSeatPattern.setColumnCount(5);
-		seatPatternService.createSeatPattern(theater3.getId(), standardSeatPattern);
-		
-		SeatPattern premiumSeatPattern = new SeatPattern();
-		premiumSeatPattern.setSeatPrice(6000);
-		premiumSeatPattern.setSeatType(SeatType.PREMIUM);
-		premiumSeatPattern.setRowCount(2);
-		premiumSeatPattern.setColumnCount(5);
-		seatPatternService.createSeatPattern(theater3.getId(), premiumSeatPattern);
-		
-		
+		SeatPattern minPremiumSeatPattern = new SeatPattern();
+		minPremiumSeatPattern.setSeatPrice(6000);
+		minPremiumSeatPattern.setSeatType(SeatType.PREMIUM);
+		minPremiumSeatPattern.setRowCount(5);
+		minPremiumSeatPattern.setColumnCount(16);
+		minPremiumSeatPattern.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minTheater1.getId(), minPremiumSeatPattern);
+		// seatPattern for mingalar->minTheater1
+
 		ShowTime time1 = new ShowTime();
 		time1.setShowDate(LocalDate.of(2024, 1, 30));
 		time1.setShowTime(LocalTime.of(8, 30));
 		time1.setMovie(theBoyandTheHeron);
-		time1.setTheater(theater1);
-		showTimeRepository.save(time1);
-		
+		time1.setTheater(minTheater1);
+		showTimeService.createShowTime(time1, minTheater1.getId(), theBoyandTheHeron.getId());
+
 		ShowTime time2 = new ShowTime();
 		time2.setShowDate(LocalDate.of(2024, 1, 27));
 		time2.setShowTime(LocalTime.of(11, 00));
 		time2.setMovie(theBoyandTheHeron);
-		time2.setTheater(theater1);
-		showTimeRepository.save(time2);
+		time2.setTheater(minTheater1);
+		showTimeService.createShowTime(time2, minTheater1.getId(), theBoyandTheHeron.getId());
+	
+
+		Theater minTheater2 = new Theater();
+		minTheater2.setName("MGR I");
+		minTheater2.setScreen("HDR");
+		minTheater2.setCinema(mingalar);
+		theaterRepository.save(minTheater2);
+		// seatPattern for mingalar->minTheater1
+		SeatPattern minStandardSeatPattern2 = new SeatPattern();
+		minStandardSeatPattern2.setSeatPrice(5500);
+		minStandardSeatPattern2.setSeatType(SeatType.STANDARD);
+		minStandardSeatPattern2.setRowCount(4);
+		minStandardSeatPattern2.setColumnCount(16);
+		minStandardSeatPattern2.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minTheater2.getId(), minStandardSeatPattern2);
+		
+		SeatPattern minPremiumSeatPattern2 = new SeatPattern();
+		minPremiumSeatPattern2.setSeatPrice(6000);
+		minPremiumSeatPattern2.setSeatType(SeatType.PREMIUM);
+		minPremiumSeatPattern2.setRowCount(4);
+		minPremiumSeatPattern2.setColumnCount(10);
+		minPremiumSeatPattern2.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minTheater2.getId(), minPremiumSeatPattern2);
+		// seatPattern for mingalar->minTheater1
 
 		ShowTime time3 = new ShowTime();
-		time3.setShowDate(LocalDate.of(2024, 1, 30));
-		time3.setShowTime(LocalTime.of(14, 30));
+		time3.setShowDate(LocalDate.of(2024, 2, 28));
+		time3.setShowTime(LocalTime.of(8, 30));
 		time3.setMovie(theBoyandTheHeron);
-		time3.setTheater(theater1);
-		showTimeRepository.save(time3);
-		
+		time3.setTheater(minTheater2);
+		showTimeService.createShowTime(time3, minTheater2.getId(), theBoyandTheHeron.getId());
 
-		
 		ShowTime time4 = new ShowTime();
-		time4.setShowDate(LocalDate.of(2024, 1, 30));
-		time4.setShowTime(LocalTime.of(8, 30));
+		time4.setShowDate(LocalDate.of(2024, 1, 31));
+		time4.setShowTime(LocalTime.of(10, 00));
 		time4.setMovie(theBoyandTheHeron);
-		time4.setTheater(theater2);
-		showTimeRepository.save(time4);
+		time4.setTheater(minTheater2);
+		showTimeService.createShowTime(time4, minTheater2.getId(), theBoyandTheHeron.getId());
 		
-		ShowTime time5 = new ShowTime();
-		time5.setShowDate(LocalDate.of(2024, 1, 29));
-		time5.setShowTime(LocalTime.of(11, 00));
-		time5.setMovie(theBoyandTheHeron);
-		time5.setTheater(theater2);
-		showTimeRepository.save(time5);
-
-		ShowTime time6 = new ShowTime();
-		time6.setShowDate(LocalDate.of(2024, 1, 28));
-		time6.setShowTime(LocalTime.of(14, 30));
-		time6.setMovie(theBoyandTheHeron);
-		time6.setTheater(theater3);
-		showTimeRepository.save(time6);
 
 		User user1 = new User();
 		user1.setFirstname("Mg");
