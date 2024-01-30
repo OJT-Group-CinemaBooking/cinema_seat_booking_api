@@ -90,6 +90,7 @@ public class ShowTimeServiceImpl implements ShowTimeService{
 		// TODO Auto-generated method stub
 		Theater theater = getShowtimeByTheaterId(theaterId);
 		showTime.setTheater(theater);
+		showTime.setConnectMovie(movieId);
 		showTime.setMovie(getShowtimeByMovieId(movieId));
 		ShowTime createdShowTime = saveShowTime(showTime);
 		
@@ -119,6 +120,7 @@ public class ShowTimeServiceImpl implements ShowTimeService{
 		ShowTime showtime = showTimeOptional.get();
 		showTime.setMovie(showtime.getMovie());
 		showTime.setTheater(showtime.getTheater());
+		showTime.setConnectMovie(showTime.getMovie().getId());
 		return saveShowTime(showTime);
 	}
 

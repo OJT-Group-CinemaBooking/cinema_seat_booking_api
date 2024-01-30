@@ -331,6 +331,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		ShowTime time1 = new ShowTime();
 		time1.setShowDate(LocalDate.of(2024, 1, 30));
 		time1.setShowTime(LocalTime.of(8, 30));
+		time1.setConnectMovie(1L);
 		time1.setMovie(theBoyandTheHeron);
 		time1.setTheater(theater1);
 		showTimeRepository.save(time1);
@@ -338,6 +339,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		ShowTime time2 = new ShowTime();
 		time2.setShowDate(LocalDate.of(2024, 1, 27));
 		time2.setShowTime(LocalTime.of(11, 00));
+		time2.setConnectMovie(1L);
 		time2.setMovie(theBoyandTheHeron);
 		time2.setTheater(theater1);
 		showTimeRepository.save(time2);
@@ -345,6 +347,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		ShowTime time3 = new ShowTime();
 		time3.setShowDate(LocalDate.of(2024, 1, 30));
 		time3.setShowTime(LocalTime.of(14, 30));
+		time3.setConnectMovie(1L);
 		time3.setMovie(theBoyandTheHeron);
 		time3.setTheater(theater1);
 		showTimeRepository.save(time3);
@@ -354,6 +357,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		ShowTime time4 = new ShowTime();
 		time4.setShowDate(LocalDate.of(2024, 1, 30));
 		time4.setShowTime(LocalTime.of(8, 30));
+		time4.setConnectMovie(1L);
 		time4.setMovie(theBoyandTheHeron);
 		time4.setTheater(theater2);
 		showTimeRepository.save(time4);
@@ -361,6 +365,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		ShowTime time5 = new ShowTime();
 		time5.setShowDate(LocalDate.of(2024, 1, 29));
 		time5.setShowTime(LocalTime.of(11, 00));
+		time5.setConnectMovie(1L);
 		time5.setMovie(theBoyandTheHeron);
 		time5.setTheater(theater2);
 		showTimeRepository.save(time5);
@@ -368,6 +373,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		ShowTime time6 = new ShowTime();
 		time6.setShowDate(LocalDate.of(2024, 1, 28));
 		time6.setShowTime(LocalTime.of(14, 30));
+		time6.setConnectMovie(1L);
 		time6.setMovie(theBoyandTheHeron);
 		time6.setTheater(theater3);
 		showTimeRepository.save(time6);
