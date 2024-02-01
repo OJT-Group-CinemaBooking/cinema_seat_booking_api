@@ -3,6 +3,8 @@ package com.hostmdy.cinema;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -30,6 +32,7 @@ import com.hostmdy.cinema.repository.SeatPatternRepository;
 import com.hostmdy.cinema.repository.SeatRepository;
 import com.hostmdy.cinema.repository.ShowTimeRepository;
 import com.hostmdy.cinema.repository.TheaterRepository;
+import com.hostmdy.cinema.service.MovieService;
 import com.hostmdy.cinema.service.SeatPatternService;
 import com.hostmdy.cinema.service.ShowTimeService;
 import com.hostmdy.cinema.repository.UserRepository;
@@ -73,6 +76,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
   
   @Autowired
 	public UserRepository userRepository;
+  
+  @Autowired
+  	public MovieService movieService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CinemaSeatBookingApiApplication.class, args);
@@ -287,6 +293,330 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		theBoyMovieCrew2.setMovie(theBoyandTheHeron);
 		movieCrewRepository.save(theBoyMovieCrew2);
 		
+		// for movie id 2
+		Crew jasonStatham = new Crew();
+		jasonStatham.setName("Jason Statham ");
+		jasonStatham.setRole("Starring");
+		crewRepository.save(jasonStatham);
+		
+		Crew emmyRaverLampman = new Crew();
+		emmyRaverLampman.setName("Emmy Raver-Lampman");
+		emmyRaverLampman.setRole("Starring");
+		crewRepository.save(emmyRaverLampman);
+		
+		Crew bobbyNaderi = new Crew();
+		bobbyNaderi.setName("Bobby Naderi");
+		bobbyNaderi.setRole("Starring");
+		crewRepository.save(bobbyNaderi);
+		
+		Crew jeremyIrons = new Crew();
+		jeremyIrons.setName("Jeremy Irons");
+		jeremyIrons.setRole("Starring");
+		crewRepository.save(jeremyIrons);
+		
+		Crew joshHutcherson = new Crew();
+		joshHutcherson.setName("Josh Hutcherson");
+		joshHutcherson.setRole("Starring");
+		crewRepository.save(joshHutcherson);
+		
+		Crew davidAyer = new Crew();
+		davidAyer.setName("David Ayer");
+		davidAyer.setRole("Director");
+		crewRepository.save(davidAyer);
+		
+		Movie theBeekeeper = new Movie();
+		theBeekeeper.setTitle("The Beekeeper");
+		theBeekeeper.setReleaseDate(LocalDate.of(2024, 01, 12));
+		theBeekeeper.setDuration(105);
+		theBeekeeper.setRating(6.6);
+		theBeekeeper.setCountry("United States");
+		theBeekeeper.setLanguage("English");
+		theBeekeeper.setNowShowing(true);
+		theBeekeeper.setComingSoon(false);
+		theBeekeeper.setPopularNow(true);
+		theBeekeeper.setShowing(true);
+		theBeekeeper.setTrailer("just sample link...");
+		theBeekeeper.setSynopsis("One man's brutal campaign for vengeance takes on national stakes after he is revealed to be a former operative of a powerful and clandestine organization known as \"Beekeepers\".");
+		movieRepository.save(theBeekeeper);
+		
+		
+		List<Genere> generes = new ArrayList<>();
+		generes.add(action);
+		generes.add(thriller);
+		movieService.addGenere(2l, generes);
+		
+		List<Crew> crews = new ArrayList<>();
+		crews.add(jasonStatham);
+		crews.add(emmyRaverLampman);
+		crews.add(bobbyNaderi);
+		crews.add(jeremyIrons);
+		crews.add(joshHutcherson);
+		crews.add(davidAyer);
+		movieService.addCrew(2L, crews);
+		
+		
+		// for movie id 3
+		Crew phyllisLogan = new Crew();
+		phyllisLogan.setName("Phyllis Logan");
+		phyllisLogan.setRole("Starring");
+		crewRepository.save(phyllisLogan);
+		
+		Crew colmMeaney = new Crew();
+		colmMeaney.setName("Colm Meaney");
+		colmMeaney.setRole("Starring");
+		crewRepository.save(colmMeaney);
+		
+		Crew willAttenborough = new Crew();
+		willAttenborough.setName("Will Attenborough");
+		willAttenborough.setRole("Starring");
+		crewRepository.save(willAttenborough);
+		
+		Crew jamesCarrollJordan = new Crew();
+		jamesCarrollJordan.setName("James Carroll Jordan");
+		jamesCarrollJordan.setRole("Starring");
+		crewRepository.save(jamesCarrollJordan);
+		
+		Crew claudioFah = new Crew();
+		claudioFah.setName("Claudio Fäh");
+		claudioFah.setRole("Director");
+		crewRepository.save(claudioFah);
+		
+		Movie noWayUp = new Movie();
+		noWayUp.setTitle("No Way Up");
+		noWayUp.setReleaseDate(LocalDate.of(2024, 02, 16));
+		noWayUp.setDuration(90);
+		noWayUp.setRating(5.0);
+		noWayUp.setCountry("United States");
+		noWayUp.setLanguage("English");
+		noWayUp.setNowShowing(true);
+		noWayUp.setComingSoon(false);
+		noWayUp.setPopularNow(true);
+		noWayUp.setShowing(true);
+		noWayUp.setTrailer("just sample link...");
+		noWayUp.setSynopsis("Characters from very different backgrounds are thrown together when the plane they're travelling on crashes into the Pacific Ocean. When the airliner comes to rest perilously close to the edge of a ravine with the surviving passengers and crew trapped in an air pocket, a nightmare fight for survival ensues with the air supply running out and dangers creeping in from all sides.");
+		movieRepository.save(noWayUp);
+		
+		List<Genere> genereNoWayUp = new ArrayList<>();
+		genereNoWayUp.add(action);
+		genereNoWayUp.add(adventure);
+		genereNoWayUp.add(drama);
+		movieService.addGenere(3L, genereNoWayUp);
+		
+		List<Crew> crewNoWayUp = new ArrayList<>();
+		crewNoWayUp.add(phyllisLogan);
+		crewNoWayUp.add(colmMeaney);
+		crewNoWayUp.add(willAttenborough);
+		crewNoWayUp.add(jamesCarrollJordan);
+		crewNoWayUp.add(claudioFah);
+		movieService.addCrew(3L, crewNoWayUp);
+		
+		
+		// for movie id 4
+		
+		Crew sofiaVergara = new Crew();
+		sofiaVergara.setName("Sofía Vergara");
+		sofiaVergara.setRole("Starring");
+		crewRepository.save(sofiaVergara); 
+		
+		Crew joeyKing = new Crew();
+		joeyKing.setName("Joey King");
+		joeyKing.setRole("Starring");
+		crewRepository.save(joeyKing); 
+		
+		Crew willFerrell = new Crew();
+		willFerrell.setName("Will Ferrell");
+		willFerrell.setRole("Starring");
+		crewRepository.save(willFerrell); 
+		
+		Crew steveCarell = new Crew();
+		steveCarell.setName("Steve Carell");
+		steveCarell.setRole("Starring");
+		crewRepository.save(steveCarell); 
+		
+		Crew kristenWiig = new Crew();
+		kristenWiig.setName("Kristen Wiig");
+		kristenWiig.setRole("Starring");
+		crewRepository.save(kristenWiig); 
+		
+		Crew mirandaCosgrove = new Crew();
+		mirandaCosgrove.setName("Miranda Cosgrove");
+		mirandaCosgrove.setRole("Starring");
+		crewRepository.save(mirandaCosgrove); 
+		
+		Crew chrisRenaud = new Crew();
+		chrisRenaud.setName("Chris Renaud");
+		chrisRenaud.setRole("Director");
+		crewRepository.save(chrisRenaud);
+		
+		Movie dm = new Movie();
+		dm.setTitle("Despicable Me 4");
+		dm.setReleaseDate(LocalDate.of(2024, 07, 03));
+		dm.setDuration(90);
+		dm.setRating(5.0);
+		dm.setCountry("United States");
+		dm.setLanguage("English");
+		dm.setNowShowing(false);
+		dm.setComingSoon(true);
+		dm.setPopularNow(false);
+		dm.setShowing(true);
+		dm.setTrailer("just sample link...");
+		dm.setSynopsis("Gru, Lucy, Margo, Edith, and Agnes welcome a new member to the family, Gru Jr., who is intent on tormenting his dad. Gru faces a new nemesis in Maxime Le Mal and his girlfriend Valentina, and the family is forced to go on the run.");
+		movieRepository.save(dm);
+		
+		List<Genere> genereDm = new ArrayList<>();
+		genereDm.add(animation);
+		genereDm.add(adventure);
+		genereDm.add(comedy);
+		movieService.addGenere(4L, genereDm);
+		
+		List<Crew> crewDm = new ArrayList<>();
+		crewDm.add(sofiaVergara);
+		crewDm.add(joeyKing);
+		crewDm.add(willFerrell);
+		crewDm.add(steveCarell);
+		crewDm.add(kristenWiig);
+		crewDm.add(mirandaCosgrove);
+		crewDm.add(chrisRenaud);
+		movieService.addCrew(4L, crewDm);
+		
+		// for movie id 5
+		
+		Crew natsukiHanae = new Crew();
+		natsukiHanae.setName("Natsuki Hanae");
+		natsukiHanae.setRole("Starring");
+		crewRepository.save(natsukiHanae); 
+		
+		Crew kengoKawanishi = new Crew();
+		kengoKawanishi.setName("Kengo Kawanishi");
+		kengoKawanishi.setRole("Starring");
+		crewRepository.save(kengoKawanishi); 
+		
+		Crew akariKito = new Crew();
+		akariKito.setName("Akari Kitô");
+		akariKito.setRole("Starring");
+		crewRepository.save(akariKito); 
+		
+		Crew yoshitsuguMatsuoka = new Crew();
+		yoshitsuguMatsuoka.setName("Yoshitsugu Matsuoka");
+		yoshitsuguMatsuoka.setRole("Starring");
+		crewRepository.save(yoshitsuguMatsuoka); 
+		
+		Crew hiroShimono = new Crew();
+		hiroShimono.setName("Hiro Shimono");
+		hiroShimono.setRole("Starring");
+		crewRepository.save(hiroShimono); 
+		
+		Crew haruoSotozaki = new Crew();
+		haruoSotozaki.setName("Haruo Sotozaki");
+		haruoSotozaki.setRole("Director");
+		crewRepository.save(haruoSotozaki);
+		
+		Movie ds = new Movie();
+		ds.setTitle("Demon Slayer: Kimetsu No Yaiba - To the Hashira Training");
+		ds.setReleaseDate(LocalDate.of(2024, 02, 23));
+		ds.setDuration(104);
+		ds.setRating(5.0);
+		ds.setCountry("Japan");
+		ds.setLanguage("Japan");
+		ds.setNowShowing(true);
+		ds.setComingSoon(false);
+		ds.setPopularNow(true);
+		ds.setShowing(true);
+		ds.setTrailer("just sample link...");
+		ds.setSynopsis("Tanjiro undergoes rigorous training with the Stone Hashira, Himejima, in his quest to become a Hashira. Meanwhile, Muzan continues to search for Nezuko and Ubuyashiki.");
+		movieRepository.save(ds);
+		
+		List<Genere> genereDs = new ArrayList<>();
+		genereDs.add(animation);
+		movieService.addGenere(5L, genereDs);
+		
+		List<Crew> crewDs = new ArrayList<>();
+		crewDs.add(natsukiHanae);
+		crewDs.add(kengoKawanishi);
+		crewDs.add(akariKito);
+		crewDs.add(yoshitsuguMatsuoka);
+		crewDs.add(hiroShimono);
+		crewDs.add(haruoSotozaki);
+		movieService.addCrew(5L, crewDs);
+		
+		// for movie id 6
+		Crew sydneySweeney = new Crew();
+		sydneySweeney.setName("Sydney Sweeney");
+		sydneySweeney.setRole("Starring");
+		crewRepository.save(sydneySweeney);
+		
+		Crew isabelaMerced = new Crew();
+		isabelaMerced.setName("Isabela Merced");
+		isabelaMerced.setRole("Starring");
+		crewRepository.save(isabelaMerced); 
+		
+		Crew dakotaJohnson = new Crew();
+		dakotaJohnson.setName("Dakota Johnson");
+		dakotaJohnson.setRole("Starring");
+		crewRepository.save(dakotaJohnson); 
+		
+		Crew emmaRoberts = new Crew();
+		emmaRoberts.setName("Emma Roberts");
+		emmaRoberts.setRole("Starring");
+		crewRepository.save(emmaRoberts); 
+		
+		Crew adamScott = new Crew();
+		adamScott.setName("Adam Scott");
+		adamScott.setRole("Starring");
+		crewRepository.save(adamScott); 
+		
+		Crew celesteConnor = new Crew();
+		celesteConnor.setName("Celeste O'Connor");
+		celesteConnor.setRole("Starring");
+		crewRepository.save(celesteConnor); 
+		
+		Crew jillHennessy = new Crew();
+		jillHennessy.setName("Jill Hennessy");
+		jillHennessy.setRole("Starring");
+		crewRepository.save(jillHennessy); 
+		
+		Crew taharRahim = new Crew();
+		taharRahim.setName("Tahar Rahim");
+		taharRahim.setRole("Starring");
+		crewRepository.save(taharRahim); 
+		
+		Crew clarkson = new Crew();
+		clarkson.setName("S.J. Clarkson");
+		clarkson.setRole("Director");
+		crewRepository.save(clarkson);
+		
+		Movie madameWeb = new Movie();
+		madameWeb.setTitle("Madame Web");
+		madameWeb.setReleaseDate(LocalDate.of(2024, 02, 14));
+		madameWeb.setDuration(116);
+		madameWeb.setRating(5.0);
+		madameWeb.setCountry("United States");
+		madameWeb.setLanguage("English");
+		madameWeb.setNowShowing(true);
+		madameWeb.setComingSoon(false);
+		madameWeb.setPopularNow(true);
+		madameWeb.setShowing(true);
+		madameWeb.setTrailer("just sample link...");
+		madameWeb.setSynopsis("Cassandra Webb develops the power to see the future. Forced to confront revelations about her past, she forges a relationship with three young women bound for powerful destinies, if they can all survive a deadly present.");
+		movieRepository.save(madameWeb);
+		
+		List<Genere> genereWeb = new ArrayList<>();
+		genereWeb.add(action);
+		genereWeb.add(adventure);
+		genereWeb.add(scienceFiction);
+		movieService.addGenere(6L, genereWeb);
+		
+		List<Crew> crewWeb = new ArrayList<>();
+		crewWeb.add(sydneySweeney);
+		crewWeb.add(isabelaMerced);
+		crewWeb.add(dakotaJohnson);
+		crewWeb.add(emmaRoberts);
+		crewWeb.add(adamScott);
+		crewWeb.add(celesteConnor);
+		crewWeb.add(jillHennessy);
+		crewWeb.add(taharRahim);
+		crewWeb.add(clarkson);
+		movieService.addCrew(6L, crewWeb);
 		
 		
 		Cinema mingalar = new Cinema();
@@ -318,20 +648,52 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		// seatPattern for mingalar->minTheater1
 
 		ShowTime time1 = new ShowTime();
-		time1.setShowDate(LocalDate.of(2024, 1, 30));
+		time1.setShowDate(LocalDate.of(2024, 2, 29));
 		time1.setShowTime(LocalTime.of(8, 30));
-		time1.setConnectMovie(1L);
+		time1.setConnectMovie(theBoyandTheHeron.getId());
 		time1.setMovie(theBoyandTheHeron);
 		time1.setTheater(minTheater1);
 		showTimeService.createShowTime(time1, minTheater1.getId(), theBoyandTheHeron.getId());
 
 		ShowTime time2 = new ShowTime();
-		time2.setShowDate(LocalDate.of(2024, 1, 27));
+		time2.setShowDate(LocalDate.of(2024, 2, 27));
 		time2.setShowTime(LocalTime.of(11, 00));
-		time2.setConnectMovie(1L);
-		time2.setMovie(theBoyandTheHeron);
+		time2.setConnectMovie(theBeekeeper.getId());
+		time2.setMovie(theBeekeeper);
 		time2.setTheater(minTheater1);
-		showTimeService.createShowTime(time2, minTheater1.getId(), theBoyandTheHeron.getId());
+		showTimeService.createShowTime(time2, minTheater1.getId(), theBeekeeper.getId());
+		
+		ShowTime time11 = new ShowTime();
+		time11.setShowDate(LocalDate.of(2024, 2, 27));
+		time11.setShowTime(LocalTime.of(11, 00));
+		time11.setConnectMovie(noWayUp.getId());
+		time11.setMovie(noWayUp);
+		time11.setTheater(minTheater1);
+		showTimeService.createShowTime(time11, minTheater1.getId(), noWayUp.getId());
+		
+		ShowTime time12 = new ShowTime();
+		time12.setShowDate(LocalDate.of(2024, 2, 27));
+		time12.setShowTime(LocalTime.of(11, 00));
+		time12.setConnectMovie(dm.getId());
+		time12.setMovie(dm);
+		time12.setTheater(minTheater1);
+		showTimeService.createShowTime(time12, minTheater1.getId(), dm.getId());
+		
+		ShowTime time13 = new ShowTime();
+		time13.setShowDate(LocalDate.of(2024, 2, 27));
+		time13.setShowTime(LocalTime.of(11, 00));
+		time13.setConnectMovie(ds.getId());
+		time13.setMovie(ds);
+		time13.setTheater(minTheater1);
+		showTimeService.createShowTime(time13, minTheater1.getId(), ds.getId());
+		
+		ShowTime time14 = new ShowTime();
+		time14.setShowDate(LocalDate.of(2024, 2, 27));
+		time14.setShowTime(LocalTime.of(11, 00));
+		time14.setConnectMovie(madameWeb.getId());
+		time14.setMovie(madameWeb);
+		time14.setTheater(minTheater1);
+		showTimeService.createShowTime(time14, minTheater1.getId(), madameWeb.getId());
 	
 
 		Theater minTheater2 = new Theater();
@@ -358,20 +720,216 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		// seatPattern for mingalar->minTheater1
 
 		ShowTime time3 = new ShowTime();
-		time3.setConnectMovie(1L);
 		time3.setShowDate(LocalDate.of(2024, 2, 28));
 		time3.setShowTime(LocalTime.of(8, 30));
-		time3.setMovie(theBoyandTheHeron);
+		time3.setConnectMovie(dm.getId());
+		time3.setMovie(dm);
 		time3.setTheater(minTheater2);
-		showTimeService.createShowTime(time3, minTheater2.getId(), theBoyandTheHeron.getId());
+		showTimeService.createShowTime(time3, minTheater2.getId(), dm.getId());
 
 		ShowTime time4 = new ShowTime();
-		time4.setConnectMovie(1L);
 		time4.setShowDate(LocalDate.of(2024, 1, 31));
 		time4.setShowTime(LocalTime.of(10, 00));
-		time4.setMovie(theBoyandTheHeron);
+		time4.setConnectMovie(theBeekeeper.getId());
+		time4.setMovie(theBeekeeper);
 		time4.setTheater(minTheater2);
-		showTimeService.createShowTime(time4, minTheater2.getId(), theBoyandTheHeron.getId());
+		showTimeService.createShowTime(time4, minTheater2.getId(), theBeekeeper.getId());
+		
+		
+		Cinema mingalarDaimond = new Cinema();
+		mingalarDaimond.setName("Mingalar Daimond");
+		mingalarDaimond.setLocation("Mandalay");
+		cinemaRepository.save(mingalarDaimond);
+		
+		Theater minDaiTheater1 = new Theater();
+		minDaiTheater1.setName("MDD I");
+		minDaiTheater1.setScreen("IMAX");
+		minDaiTheater1.setCinema(mingalarDaimond);
+		theaterRepository.save(minDaiTheater1);
+		
+		SeatPattern minDaiStandardSeatPattern = new SeatPattern();
+		minDaiStandardSeatPattern.setSeatPrice(6000);
+		minDaiStandardSeatPattern.setSeatType(SeatType.STANDARD);
+		minDaiStandardSeatPattern.setRowCount(5);
+		minDaiStandardSeatPattern.setColumnCount(20);
+		minDaiStandardSeatPattern.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minDaiTheater1.getId(), minDaiStandardSeatPattern);
+		
+		SeatPattern minDaiPremiumSeatPattern = new SeatPattern();
+		minDaiPremiumSeatPattern.setSeatPrice(12000);
+		minDaiPremiumSeatPattern.setSeatType(SeatType.PREMIUM);
+		minDaiPremiumSeatPattern.setRowCount(4);
+		minDaiPremiumSeatPattern.setColumnCount(16);
+		minDaiPremiumSeatPattern.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minDaiTheater1.getId(), minDaiPremiumSeatPattern);
+		
+		ShowTime time5 = new ShowTime();
+		time5.setShowDate(LocalDate.of(2024, 1, 30));
+		time5.setShowTime(LocalTime.of(8, 30));
+		time5.setConnectMovie(theBeekeeper.getId());
+		time5.setMovie(theBeekeeper);
+		time5.setTheater(minDaiTheater1);
+		showTimeService.createShowTime(time5, minDaiTheater1.getId(), theBeekeeper.getId());
+		
+		Theater minDaiTheater2 = new Theater();
+		minDaiTheater2.setName("MDD II");
+		minDaiTheater2.setScreen("HDR");
+		minDaiTheater2.setCinema(mingalarDaimond);
+		theaterRepository.save(minDaiTheater2);
+		
+		SeatPattern minDaiStandardSeatPattern2 = new SeatPattern();
+		minDaiStandardSeatPattern2.setSeatPrice(6000);
+		minDaiStandardSeatPattern2.setSeatType(SeatType.STANDARD);
+		minDaiStandardSeatPattern2.setRowCount(5);
+		minDaiStandardSeatPattern2.setColumnCount(18);
+		minDaiStandardSeatPattern2.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minDaiTheater2.getId(), minDaiStandardSeatPattern2);
+		
+		SeatPattern minDaiPremiumSeatPattern2 = new SeatPattern();
+		minDaiPremiumSeatPattern2.setSeatPrice(10000);
+		minDaiPremiumSeatPattern2.setSeatType(SeatType.PREMIUM);
+		minDaiPremiumSeatPattern2.setRowCount(3);
+		minDaiPremiumSeatPattern2.setColumnCount(10);
+		minDaiPremiumSeatPattern2.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minDaiTheater2.getId(), minDaiPremiumSeatPattern2);
+		
+		ShowTime time6 = new ShowTime();
+		time6.setShowDate(LocalDate.of(2024, 1, 30));
+		time6.setShowTime(LocalTime.of(8, 30));
+		time6.setConnectMovie(noWayUp.getId());
+		time6.setMovie(noWayUp);
+		time6.setTheater(minDaiTheater2);
+		showTimeService.createShowTime(time6, minDaiTheater2.getId(), noWayUp.getId());
+		
+		Cinema mingalarYgn = new Cinema();
+		mingalarYgn.setName("Mingalar");
+		mingalarYgn.setLocation("Yangon");
+		cinemaRepository.save(mingalarYgn);
+		
+		Theater minYgnTheater1 = new Theater();
+		minYgnTheater1.setName("MDR I");
+		minYgnTheater1.setScreen("3D");
+		minYgnTheater1.setCinema(mingalarYgn);
+		theaterRepository.save(minYgnTheater1);
+		
+		SeatPattern minYgnStandardSeatPattern = new SeatPattern();
+		minYgnStandardSeatPattern.setSeatPrice(6000);
+		minYgnStandardSeatPattern.setSeatType(SeatType.STANDARD);
+		minYgnStandardSeatPattern.setRowCount(4);
+		minYgnStandardSeatPattern.setColumnCount(20);
+		minYgnStandardSeatPattern.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minYgnTheater1.getId(), minYgnStandardSeatPattern);
+		
+		SeatPattern minYgnPremiumSeatPattern = new SeatPattern();
+		minYgnPremiumSeatPattern.setSeatPrice(6000);
+		minYgnPremiumSeatPattern.setSeatType(SeatType.PREMIUM);
+		minYgnPremiumSeatPattern.setRowCount(5);
+		minYgnPremiumSeatPattern.setColumnCount(16);
+		minYgnPremiumSeatPattern.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minYgnTheater1.getId(), minYgnPremiumSeatPattern);
+		
+		ShowTime time7 = new ShowTime();
+		time7.setShowDate(LocalDate.of(2024, 1, 30));
+		time7.setShowTime(LocalTime.of(8, 30));
+		time7.setConnectMovie(ds.getId());
+		time7.setMovie(ds);
+		time7.setTheater(minYgnTheater1);
+		showTimeService.createShowTime(time7, minYgnTheater1.getId(), ds.getId());
+		
+		Theater minYgnTheater2 = new Theater();
+		minYgnTheater2.setName("MDR II");
+		minYgnTheater2.setScreen("HDR");
+		minYgnTheater2.setCinema(mingalarYgn);
+		theaterRepository.save(minYgnTheater2);
+		
+		SeatPattern minYgnStandardSeatPattern2 = new SeatPattern();
+		minYgnStandardSeatPattern2.setSeatPrice(6000);
+		minYgnStandardSeatPattern2.setSeatType(SeatType.STANDARD);
+		minYgnStandardSeatPattern2.setRowCount(6);
+		minYgnStandardSeatPattern2.setColumnCount(20);
+		minYgnStandardSeatPattern2.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minYgnTheater2.getId(), minYgnStandardSeatPattern2);
+		
+		SeatPattern minYgnPremiumSeatPattern2 = new SeatPattern();
+		minYgnPremiumSeatPattern2.setSeatPrice(6000);
+		minYgnPremiumSeatPattern2.setSeatType(SeatType.PREMIUM);
+		minYgnPremiumSeatPattern2.setRowCount(3);
+		minYgnPremiumSeatPattern2.setColumnCount(16);
+		minYgnPremiumSeatPattern2.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minYgnTheater2.getId(), minYgnPremiumSeatPattern2);
+		
+		ShowTime time8 = new ShowTime();
+		time8.setShowDate(LocalDate.of(2024, 1, 30));
+		time8.setShowTime(LocalTime.of(8, 30));
+		time8.setConnectMovie(madameWeb.getId());
+		time8.setMovie(madameWeb);
+		time8.setTheater(minYgnTheater2);
+		showTimeService.createShowTime(time8, minYgnTheater2.getId(), madameWeb.getId());
+		
+		Cinema myoma = new Cinema();
+		myoma.setName("Myoma Cinema");
+		myoma.setLocation("Yangon");
+		cinemaRepository.save(myoma);
+		
+		Theater myomaTheater1 = new Theater();
+		myomaTheater1.setName("MM I");
+		myomaTheater1.setScreen("3D");
+		myomaTheater1.setCinema(myoma);
+		theaterRepository.save(myomaTheater1);
+		
+		SeatPattern myomaStandardSeatPattern = new SeatPattern();
+		myomaStandardSeatPattern.setSeatPrice(6000);
+		myomaStandardSeatPattern.setSeatType(SeatType.STANDARD);
+		myomaStandardSeatPattern.setRowCount(4);
+		myomaStandardSeatPattern.setColumnCount(20);
+		myomaStandardSeatPattern.setRowsOrder(1);
+		seatPatternService.createSeatPattern(myomaTheater1.getId(), myomaStandardSeatPattern);
+		
+		SeatPattern myomaPremiumSeatPattern = new SeatPattern();
+		myomaPremiumSeatPattern.setSeatPrice(6000);
+		myomaPremiumSeatPattern.setSeatType(SeatType.PREMIUM);
+		myomaPremiumSeatPattern.setRowCount(5);
+		myomaPremiumSeatPattern.setColumnCount(16);
+		myomaPremiumSeatPattern.setRowsOrder(1);
+		seatPatternService.createSeatPattern(myomaTheater1.getId(), myomaPremiumSeatPattern);
+		
+		ShowTime time9 = new ShowTime();
+		time9.setShowDate(LocalDate.of(2024, 1, 30));
+		time9.setShowTime(LocalTime.of(8, 30));
+		time9.setConnectMovie(theBeekeeper.getId());
+		time9.setMovie(theBeekeeper);
+		time9.setTheater(myomaTheater1);
+		showTimeService.createShowTime(time9, myomaTheater1.getId(), theBeekeeper.getId());
+		
+		Theater myomaTheater2 = new Theater();
+		myomaTheater2.setName("MDR II");
+		myomaTheater2.setScreen("HDR");
+		myomaTheater2.setCinema(myoma);
+		theaterRepository.save(myomaTheater2);
+		
+		SeatPattern myomaStandardSeatPattern2 = new SeatPattern();
+		myomaStandardSeatPattern2.setSeatPrice(6000);
+		myomaStandardSeatPattern2.setSeatType(SeatType.STANDARD);
+		myomaStandardSeatPattern2.setRowCount(6);
+		myomaStandardSeatPattern2.setColumnCount(20);
+		myomaStandardSeatPattern2.setRowsOrder(1);
+		seatPatternService.createSeatPattern(myomaTheater2.getId(), myomaStandardSeatPattern2);
+		
+		SeatPattern myomaPremiumSeatPattern2 = new SeatPattern();
+		myomaPremiumSeatPattern2.setSeatPrice(6000);
+		myomaPremiumSeatPattern2.setSeatType(SeatType.PREMIUM);
+		myomaPremiumSeatPattern2.setRowCount(3);
+		myomaPremiumSeatPattern2.setColumnCount(16);
+		myomaPremiumSeatPattern2.setRowsOrder(1);
+		seatPatternService.createSeatPattern(myomaTheater2.getId(), myomaPremiumSeatPattern2);
+		
+		ShowTime time10 = new ShowTime();
+		time10.setShowDate(LocalDate.of(2024, 1, 30));
+		time10.setShowTime(LocalTime.of(8, 30));
+		time10.setConnectMovie(ds.getId());
+		time10.setMovie(ds);
+		time10.setTheater(myomaTheater2);
+		showTimeService.createShowTime(time10, myomaTheater2.getId(), ds.getId());
 
 		User user1 = new User();
 		user1.setFirstname("Mg");
