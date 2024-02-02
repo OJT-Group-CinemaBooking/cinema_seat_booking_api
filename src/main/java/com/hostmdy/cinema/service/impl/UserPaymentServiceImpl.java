@@ -3,6 +3,7 @@ package com.hostmdy.cinema.service.impl;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hostmdy.cinema.domain.User;
 import com.hostmdy.cinema.domain.UserPayment;
@@ -49,12 +50,18 @@ public class UserPaymentServiceImpl implements UserPaymentService {
 	}
 
 	@Override
+	@Transactional
 	public UserPayment createUserPayment(UserPayment userPayment, String username) {
 		// TODO Auto-generated method stub
 		User user = getUser(username);
-		user.setUserPayment(userPayment);
+		userPayment.setHolderName(username);
 		userPayment.setUser(user);
-		return saveUserPayment(userPayment);
+		UserPayment createdUserPayment = saveUserPayment(userPayment);
+		
+		user.setUserPayment(userPayment);
+		userRepository.save(user);
+		
+		return createdUserPayment;
 	}
 
 	@Override

@@ -10,9 +10,11 @@ public interface TicketService {
 	
 	List<Ticket> getAllTickets();
 	
+	Ticket saveTicket(Ticket ticket);
+	
 	List<Ticket> getAllTicketsByShowTime(ShowTime showTime);
 	
-	Ticket saveTicket(Ticket ticket, ShowTime showTime);
+	Ticket createTicket(Ticket ticket,Long showtimeId,String username);
 	
 	Optional<Ticket> getTicketById(Long ticketId);
 	

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hostmdy.cinema.domain.ShowTime;
 import com.hostmdy.cinema.domain.Ticket;
 import com.hostmdy.cinema.exception.DatabaseResourceNotFoundException;
-import com.hostmdy.cinema.payload.TicketRequest;
 import com.hostmdy.cinema.service.TicketService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,6 +29,11 @@ public class TicketController {
 	private final TicketService ticketService;
 	
 	@GetMapping("/all")
+	public ResponseEntity<List<Ticket>> getAllTicketList(){
+		return ResponseEntity.ok(ticketService.getAllTickets());
+	}
+	
+	@GetMapping("/all/showtime")
 	public ResponseEntity<List<Ticket>> getAllTicketsByShowTime(@RequestBody ShowTime showTime){
 		return ResponseEntity.ok(ticketService.getAllTicketsByShowTime(showTime));
 	}
@@ -45,18 +48,18 @@ public class TicketController {
 		return ResponseEntity.ok(ticketOptional.get());
 	}
 	
-	@PostMapping("/create")
-	public ResponseEntity<Ticket> createTicket(@RequestBody TicketRequest ticketRequest){
-		return ResponseEntity.ok(ticketService.saveTicket(ticketRequest.getTicket(), ticketRequest.getShowTime()));
+	@PostMapping("/create/{showtimeId}")
+	public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket,@PathVariable Long showtimeId){
+		return ResponseEntity.ok(ticketService.createTicket(ticket, showtimeId, "mm001"));
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<Ticket> updateTicket(@RequestBody TicketRequest ticketRequest){
-		if(ticketRequest.getTicket().getId() == null) {
-			return ResponseEntity.badRequest().build();
-		}
-		return ResponseEntity.ok(ticketService.saveTicket(ticketRequest.getTicket(), ticketRequest.getShowTime()));
-	}
+//	@PutMapping("/update")
+//	public ResponseEntity<Ticket> updateTicket(@RequestBody TicketRequest ticketRequest){
+//		if(ticketRequest.getTicket().getId() == null) {
+//			return ResponseEntity.badRequest().build();
+//		}
+//		return ResponseEntity.ok(ticketService.saveTicket(ticketRequest.getTicket(), ticketRequest.getShowTime()));
+//	}
 	
 	@DeleteMapping("/{ticketId}/delete")
 	public ResponseEntity<Long> deleteTicket(@PathVariable Long ticketId){
