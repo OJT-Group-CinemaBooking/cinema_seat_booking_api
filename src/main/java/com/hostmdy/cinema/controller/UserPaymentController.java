@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin("https://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/api/userpayment")
 public class UserPaymentController {
 	
@@ -40,9 +40,11 @@ public class UserPaymentController {
 		return ResponseEntity.ok(userPaymentOptional.get());
 	}
 	
-	@PostMapping("/create")
-	public ResponseEntity<UserPayment> createUserPayment(@RequestBody UserPayment userPayment, @RequestBody String username){
-		return ResponseEntity.ok(userPaymentService.createUserPayment(userPayment, username));
+	@PostMapping("/create")/*, @RequestBody String username*/
+	public ResponseEntity<UserPayment> createUserPayment(@RequestBody UserPayment payment){
+//		return ResponseEntity.ok(userPaymentService.createUserPayment(userPayment, username));
+		
+		return ResponseEntity.ok(userPaymentService.createUserPayment(payment, "mm001"));
 	}
 	
 	@PutMapping("/update")

@@ -45,12 +45,9 @@ public class CouponController {
 	}
 	
 	@GetMapping("/{couponId}/{userId}/use")
-	public ResponseEntity<?> useCouponCode(@PathVariable Long couponId,@PathVariable Long userId){
-		Boolean isUseSuccess = couponService.useCouponCode(couponId, userId);
-		if(!isUseSuccess) {
-			return ResponseEntity.badRequest().build();
-		}
-		return ResponseEntity.ok().build();
+	public ResponseEntity<Coupon> useCouponCode(@PathVariable Long couponId,@PathVariable Long userId){
+		
+		return ResponseEntity.ok(couponService.useCouponCode(couponId, userId));
 	}
 	
 	@DeleteMapping("/{couponId}/delete")

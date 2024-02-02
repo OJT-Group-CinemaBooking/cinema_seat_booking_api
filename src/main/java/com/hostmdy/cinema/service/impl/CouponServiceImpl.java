@@ -37,6 +37,12 @@ public class CouponServiceImpl implements CouponService{
 	}
 
 	@Override
+	public Optional<Coupon> getCouponById(Long couponId) {
+		// TODO Auto-generated method stub
+		return couponRepository.findById(couponId);
+	}
+
+	@Override
 	public Coupon getCouponByCouponCode(String couponCode) {
 		// TODO Auto-generated method stub
 		Optional<Coupon> couponOptional = couponRepository.findByCouponCode(couponCode);
@@ -56,19 +62,18 @@ public class CouponServiceImpl implements CouponService{
 
 	@Override
 	@Transactional
-	public Boolean useCouponCode(Long couponId,Long userId) {
+	public Coupon useCouponCode(Long couponId,Long userId) {
 		// TODO Auto-generated method stub
 		Optional<Coupon> couponOptional = couponRepository.findById(couponId);
-		if(couponOptional.isEmpty()) {
-			return false;
-		}
+		
 		Coupon coupon = couponOptional.get();
 		
 		User user = findUserById(userId);
 		
 		coupon.setUserCount(coupon.getUserCount() - 1);
+		couponRepository.save(coupon);
 		saveUserCoupon(coupon, user);
-		return true;
+		return coupon;
 	}
 	
 	private User findUserById(Long userId) {
@@ -86,18 +91,6 @@ public class CouponServiceImpl implements CouponService{
 		userCoupon.setUser(user);
 		
 		userCouponRepository.save(userCoupon);
-	}
-	
-	private Boolean checkUserIsUsed(Long userId,Coupon coupon) {
-		User user = findUserById(userId);
-		List<UserCoupon> userCoupons = userCouponRepository.findByUser(user);
-		
-		for(UserCoupon userCoupon : userCoupons) {
-			if(userCoupon.getCoupon() == coupon) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	@Override

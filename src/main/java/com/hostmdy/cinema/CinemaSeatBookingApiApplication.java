@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.hostmdy.cinema.domain.Cinema;
+import com.hostmdy.cinema.domain.Coupon;
 import com.hostmdy.cinema.domain.Crew;
 import com.hostmdy.cinema.domain.Genere;
 import com.hostmdy.cinema.domain.Movie;
@@ -26,10 +27,10 @@ import com.hostmdy.cinema.repository.MovieGenereRepository;
 import com.hostmdy.cinema.repository.MovieRepository;
 import com.hostmdy.cinema.domain.Theater;
 import com.hostmdy.cinema.domain.User;
-import com.hostmdy.cinema.repository.SeatPatternRepository;
 import com.hostmdy.cinema.repository.SeatRepository;
 import com.hostmdy.cinema.repository.ShowTimeRepository;
 import com.hostmdy.cinema.repository.TheaterRepository;
+import com.hostmdy.cinema.service.CouponService;
 import com.hostmdy.cinema.service.SeatPatternService;
 import com.hostmdy.cinema.service.ShowTimeService;
 import com.hostmdy.cinema.repository.UserRepository;
@@ -71,8 +72,11 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	@Autowired
 	public ShowTimeService showTimeService;
   
-  @Autowired
+	@Autowired
 	public UserRepository userRepository;
+	
+	@Autowired
+	public CouponService couponService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CinemaSeatBookingApiApplication.class, args);
@@ -333,7 +337,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	
 
 		Theater minTheater2 = new Theater();
-		minTheater2.setName("MGR I");
+		minTheater2.setName("MGR II");
 		minTheater2.setScreen("HDR");
 		minTheater2.setCinema(mingalar);
 		theaterRepository.save(minTheater2);
@@ -342,7 +346,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		minStandardSeatPattern2.setSeatPrice(5500);
 		minStandardSeatPattern2.setSeatType(SeatType.STANDARD);
 		minStandardSeatPattern2.setRowCount(4);
-		minStandardSeatPattern2.setColumnCount(16);
+		minStandardSeatPattern2.setColumnCount(25);
 		minStandardSeatPattern2.setRowsOrder(1);
 		seatPatternService.createSeatPattern(minTheater2.getId(), minStandardSeatPattern2);
 		
@@ -379,6 +383,27 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		user1.setRole("user");
 		
 		userRepository.save(user1);
+		
+		Coupon kyimal1234 = new Coupon();
+		kyimal1234.setCouponCode("kyimal1234");
+		kyimal1234.setDiscount(3000);
+		kyimal1234.setExpiryDate(LocalDate.of(2024, 2, 28));
+		kyimal1234.setUserCount(0);
+		couponService.CreateCoupon(kyimal1234);
+		
+		Coupon cinema1234 = new Coupon();
+		cinema1234.setCouponCode("cinema1234");
+		cinema1234.setDiscount(2000);
+		cinema1234.setExpiryDate(LocalDate.of(2024, 1, 31));
+		cinema1234.setUserCount(10);
+		couponService.CreateCoupon(cinema1234);
+		
+		Coupon coupon = new Coupon();
+		coupon.setCouponCode("coupon1234");
+		coupon.setDiscount(1000);
+		coupon.setExpiryDate(LocalDate.of(2024, 3, 31));
+		coupon.setUserCount(10);
+		couponService.CreateCoupon(coupon);
 	}
 
 }
