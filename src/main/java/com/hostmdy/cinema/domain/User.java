@@ -61,4 +61,6 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<UserCoupon> userCupons = new ArrayList<>();
 
+	@OneToMany(mappedBy = "user")
+	private List<Ticket> tickets = new ArrayList<>();
 }

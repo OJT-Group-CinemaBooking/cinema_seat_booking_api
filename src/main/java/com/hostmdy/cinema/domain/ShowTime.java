@@ -30,6 +30,7 @@ public class ShowTime {
 	
 	private LocalDate showDate;
 	private LocalTime showTime;
+	private Long connectMovie;
 	
 	@ManyToOne
 	@JoinColumn(name = "theater_id")

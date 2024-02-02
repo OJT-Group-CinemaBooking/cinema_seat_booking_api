@@ -32,7 +32,6 @@ public class Coupon {
 	private Integer discount;
 	
 	@OneToMany(mappedBy = "coupon",cascade = CascadeType.ALL)
-	@JsonIgnore
 	private List<UserCoupon> userCoupons = new ArrayList<>();
 
 }

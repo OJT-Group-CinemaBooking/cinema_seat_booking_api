@@ -28,7 +28,7 @@ public class Theater {
 	
 	private String name;
 	
-	private String Screen;
+	private String screen;
 	
 	@ManyToOne
 	@JoinColumn(name = "cinema_id")

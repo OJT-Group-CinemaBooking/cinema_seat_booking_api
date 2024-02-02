@@ -24,6 +24,7 @@ public class UserCoupon {
 	
 	@ManyToOne
 	@JoinColumn(name = "coupon_id")
+	@JsonIgnore
 	private Coupon coupon;
 	
 	@ManyToOne
