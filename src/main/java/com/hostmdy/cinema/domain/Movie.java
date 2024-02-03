@@ -39,6 +39,7 @@ public class Movie {
 	private boolean comingSoon;
 	private boolean popularNow;
 	private boolean showing;
+	@Lob
 	private String trailer;
 	
 	@Lob

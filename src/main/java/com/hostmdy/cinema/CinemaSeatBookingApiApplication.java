@@ -273,7 +273,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		theBoyandTheHeron.setComingSoon(false);
 		theBoyandTheHeron.setPopularNow(false);
 		theBoyandTheHeron.setShowing(true);
-		theBoyandTheHeron.setTrailer("just sample link...");
+		theBoyandTheHeron.setTrailer("<iframe width=\"901\" height=\"487\" src=\"https://www.youtube.com/embed/f7EDFdA10pg\" title=\"THE BOY AND THE HERON | Official Teaser Trailer\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>");
 		theBoyandTheHeron.setSynopsis("Mahito, a young 12-year-old boy, struggles to settle in a new town after his mother's death. However, when a talking heron informs Mahito that his mother is still alive, he enters an abandoned tower in search of her, which takes him to another world.");
 		movieRepository.save(theBoyandTheHeron);
 		
@@ -339,7 +339,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		theBeekeeper.setComingSoon(false);
 		theBeekeeper.setPopularNow(true);
 		theBeekeeper.setShowing(true);
-		theBeekeeper.setTrailer("just sample link...");
+		theBeekeeper.setTrailer("<iframe width=\"866\" height=\"487\" src=\"https://www.youtube.com/embed/SzINZZ6iqxY\" title=\"THE BEEKEEPER | Official Restricted Trailer\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>");
 		theBeekeeper.setSynopsis("One man's brutal campaign for vengeance takes on national stakes after he is revealed to be a former operative of a powerful and clandestine organization known as \"Beekeepers\".");
 		movieRepository.save(theBeekeeper);
 		
@@ -396,7 +396,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		noWayUp.setComingSoon(false);
 		noWayUp.setPopularNow(true);
 		noWayUp.setShowing(true);
-		noWayUp.setTrailer("just sample link...");
+		noWayUp.setTrailer("<iframe width=\"866\" height=\"487\" src=\"https://www.youtube.com/embed/oLvrlajijhk\" title=\"No Way Up Exclusive Trailer (2024)\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>");
 		noWayUp.setSynopsis("Characters from very different backgrounds are thrown together when the plane they're travelling on crashes into the Pacific Ocean. When the airliner comes to rest perilously close to the edge of a ravine with the surviving passengers and crew trapped in an air pocket, a nightmare fight for survival ensues with the air supply running out and dangers creeping in from all sides.");
 		movieRepository.save(noWayUp);
 		
@@ -463,7 +463,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		dm.setComingSoon(true);
 		dm.setPopularNow(false);
 		dm.setShowing(true);
-		dm.setTrailer("just sample link...");
+		dm.setTrailer("<iframe width=\"866\" height=\"487\" src=\"https://www.youtube.com/embed/qQlr9-rF32A\" title=\"Despicable Me 4 | Official Trailer\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>");
 		dm.setSynopsis("Gru, Lucy, Margo, Edith, and Agnes welcome a new member to the family, Gru Jr., who is intent on tormenting his dad. Gru faces a new nemesis in Maxime Le Mal and his girlfriend Valentina, and the family is forced to go on the run.");
 		movieRepository.save(dm);
 		
@@ -526,7 +526,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		ds.setComingSoon(false);
 		ds.setPopularNow(true);
 		ds.setShowing(true);
-		ds.setTrailer("just sample link...");
+		ds.setTrailer("<iframe width=\"866\" height=\"487\" src=\"https://www.youtube.com/embed/SXcCdQdcBtw\" title=\"Demon Slayer: Kimetsu no Yaiba -To the Hashira Training Trailer #1 (2024)\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>");
 		ds.setSynopsis("Tanjiro undergoes rigorous training with the Stone Hashira, Himejima, in his quest to become a Hashira. Meanwhile, Muzan continues to search for Nezuko and Ubuyashiki.");
 		movieRepository.save(ds);
 		
@@ -600,7 +600,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		madameWeb.setComingSoon(false);
 		madameWeb.setPopularNow(true);
 		madameWeb.setShowing(true);
-		madameWeb.setTrailer("just sample link...");
+		madameWeb.setTrailer("<iframe width=\"866\" height=\"487\" src=\"https://www.youtube.com/embed/s_76M4c4LTo\" title=\"MADAME WEB – Official Trailer (HD)\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>");
 		madameWeb.setSynopsis("Cassandra Webb develops the power to see the future. Forced to confront revelations about her past, she forges a relationship with three young women bound for powerful destinies, if they can all survive a deadly present.");
 		movieRepository.save(madameWeb);
 		
