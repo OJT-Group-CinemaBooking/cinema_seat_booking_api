@@ -22,6 +22,16 @@ public class BookSeatServiceImpl implements BookSeatService{
 	private final ShowTimeRepository showTimeRepository;
 
 	@Override
+	public BookSeat getBookSeatById(Long bookseatId) {
+		// TODO Auto-generated method stub
+		Optional<BookSeat> bookSeatOptional = bookSeatRepository.findById(bookseatId);
+		if(bookSeatOptional.isEmpty()) {
+			throw new DatabaseResourceNotFoundException("BookSeat", "id", "BookSeat with id :"+bookseatId+" is not found!");
+		}
+		return bookSeatOptional.get();
+	}
+
+	@Override
 	public List<BookSeat> getByShowTimeId(Long showTimeId) {
 		// TODO Auto-generated method stub
 		Optional<ShowTime> showTimeOptional = showTimeRepository.findById(showTimeId);
@@ -29,6 +39,14 @@ public class BookSeatServiceImpl implements BookSeatService{
 			throw new DatabaseResourceNotFoundException("ShowTime", "id", "ShowTime with id :"+showTimeId+" is not found!");
 		}
 		return bookSeatRepository.findByShowTime(showTimeOptional.get());
+	}
+
+	@Override
+	public BookSeat takeBookSeat(Long bookseatId) {
+		// TODO Auto-generated method stub
+		BookSeat bookseat = getBookSeatById(bookseatId);
+		bookseat.setTaken(true);
+		return bookSeatRepository.save(bookseat);
 	}
 
 }
