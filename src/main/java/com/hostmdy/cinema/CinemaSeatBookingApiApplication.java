@@ -524,7 +524,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		ds.setLanguage("Japan");
 		ds.setNowShowing(true);
 		ds.setComingSoon(false);
-		ds.setPopularNow(true);
+		ds.setPopularNow(false);
 		ds.setShowing(true);
 		ds.setTrailer("just sample link...");
 		ds.setSynopsis("Tanjiro undergoes rigorous training with the Stone Hashira, Himejima, in his quest to become a Hashira. Meanwhile, Muzan continues to search for Nezuko and Ubuyashiki.");
@@ -721,6 +721,14 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		minPremiumSeatPattern2.setColumnCount(10);
 		minPremiumSeatPattern2.setRowsOrder(1);
 		seatPatternService.createSeatPattern(minTheater2.getId(), minPremiumSeatPattern2);
+		
+		SeatPattern minTwinSeatPattern2 = new SeatPattern();
+		minTwinSeatPattern2.setSeatPrice(12000);
+		minTwinSeatPattern2.setSeatType(SeatType.TWIN);
+		minTwinSeatPattern2.setRowCount(2);
+		minTwinSeatPattern2.setColumnCount(5);
+		minTwinSeatPattern2.setRowsOrder(1);
+		seatPatternService.createSeatPattern(minTheater2.getId(), minTwinSeatPattern2);
 		// seatPattern for mingalar->minTheater1
 
 		ShowTime time3 = new ShowTime();
