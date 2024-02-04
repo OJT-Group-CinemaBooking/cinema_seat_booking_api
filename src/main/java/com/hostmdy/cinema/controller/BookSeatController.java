@@ -62,6 +62,7 @@ public class BookSeatController {
 			boughtSeat.setTicket(createdTicket);
 			boughtSeatService.saveBoughtSeat(boughtSeat);
 			createdTicket.getBoughtSeats().add(boughtSeat);
+			bookSeatService.takeBookSeat(boughtSeat.getBookedSeatId());
 		}
 		
 		createdTicket = ticketService.saveTicket(createdTicket);
