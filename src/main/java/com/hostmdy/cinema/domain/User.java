@@ -5,7 +5,11 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.CascadeType;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,8 +30,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7098957303430875376L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -63,4 +72,34 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<Ticket> tickets = new ArrayList<>();
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
