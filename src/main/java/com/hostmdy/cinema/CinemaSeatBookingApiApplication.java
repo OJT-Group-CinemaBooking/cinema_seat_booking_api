@@ -2,6 +2,7 @@ package com.hostmdy.cinema;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -652,48 +653,54 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		// seatPattern for mingalar->minTheater1
 
 		ShowTime time1 = new ShowTime();
-		time1.setShowDate(LocalDate.of(2024, 2, 29));
-		time1.setShowTime(LocalTime.of(8, 30));
+//		time1.setShowDate(LocalDate.of(2024, 2, 29));
+//		time1.setShowTime(LocalTime.of(8, 30));
+		time1.setMovieTime(LocalDateTime.of(2024, 2, 29, 8, 30));
 		time1.setConnectMovie(theBoyandTheHeron.getId());
 		time1.setMovie(theBoyandTheHeron);
 		time1.setTheater(minTheater1);
 		showTimeService.createShowTime(time1, minTheater1.getId(), theBoyandTheHeron.getId());
 
 		ShowTime time2 = new ShowTime();
-		time2.setShowDate(LocalDate.of(2024, 2, 27));
-		time2.setShowTime(LocalTime.of(11, 00));
+//		time2.setShowDate(LocalDate.of(2024, 2, 27));
+//		time2.setShowTime(LocalTime.of(11, 00));
+		time2.setMovieTime(LocalDateTime.of(2024, 2, 27, 11, 00));
 		time2.setConnectMovie(theBeekeeper.getId());
 		time2.setMovie(theBeekeeper);
 		time2.setTheater(minTheater1);
 		showTimeService.createShowTime(time2, minTheater1.getId(), theBeekeeper.getId());
 		
 		ShowTime time11 = new ShowTime();
-		time11.setShowDate(LocalDate.of(2024, 2, 27));
-		time11.setShowTime(LocalTime.of(11, 00));
+//		time11.setShowDate(LocalDate.of(2024, 2, 27));
+//		time11.setShowTime(LocalTime.of(11, 00));
+		time11.setMovieTime(LocalDateTime.of(2024, 2, 27, 11, 00));
 		time11.setConnectMovie(noWayUp.getId());
 		time11.setMovie(noWayUp);
 		time11.setTheater(minTheater1);
 		showTimeService.createShowTime(time11, minTheater1.getId(), noWayUp.getId());
 		
 		ShowTime time12 = new ShowTime();
-		time12.setShowDate(LocalDate.of(2024, 2, 27));
-		time12.setShowTime(LocalTime.of(11, 00));
+//		time12.setShowDate(LocalDate.of(2024, 2, 27));
+//		time12.setShowTime(LocalTime.of(11, 00));
+		time12.setMovieTime(LocalDateTime.of(2024, 2, 27, 11, 00));
 		time12.setConnectMovie(dm.getId());
 		time12.setMovie(dm);
 		time12.setTheater(minTheater1);
 		showTimeService.createShowTime(time12, minTheater1.getId(), dm.getId());
 		
 		ShowTime time13 = new ShowTime();
-		time13.setShowDate(LocalDate.of(2024, 2, 27));
-		time13.setShowTime(LocalTime.of(11, 00));
+//		time13.setShowDate(LocalDate.of(2024, 2, 27));
+//		time13.setShowTime(LocalTime.of(11, 00));
+		time13.setMovieTime(LocalDateTime.of(2024, 2, 27, 11, 00));
 		time13.setConnectMovie(ds.getId());
 		time13.setMovie(ds);
 		time13.setTheater(minTheater1);
 		showTimeService.createShowTime(time13, minTheater1.getId(), ds.getId());
 		
 		ShowTime time14 = new ShowTime();
-		time14.setShowDate(LocalDate.of(2024, 2, 27));
-		time14.setShowTime(LocalTime.of(11, 00));
+//		time14.setShowDate(LocalDate.of(2024, 2, 27));
+//		time14.setShowTime(LocalTime.of(11, 00));
+		time14.setMovieTime(LocalDateTime.of(2024, 2, 27, 11, 00));
 		time14.setConnectMovie(madameWeb.getId());
 		time14.setMovie(madameWeb);
 		time14.setTheater(minTheater1);
@@ -732,16 +739,18 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		// seatPattern for mingalar->minTheater1
 
 		ShowTime time3 = new ShowTime();
-		time3.setShowDate(LocalDate.of(2024, 2, 28));
-		time3.setShowTime(LocalTime.of(8, 30));
+//		time3.setShowDate(LocalDate.of(2024, 2, 28));
+//		time3.setShowTime(LocalTime.of(8, 30));
+		time3.setMovieTime(LocalDateTime.of(2024, 2, 28, 8, 30));
 		time3.setConnectMovie(dm.getId());
 		time3.setMovie(dm);
 		time3.setTheater(minTheater2);
 		showTimeService.createShowTime(time3, minTheater2.getId(), dm.getId());
 
 		ShowTime time4 = new ShowTime();
-		time4.setShowDate(LocalDate.of(2024, 1, 31));
-		time4.setShowTime(LocalTime.of(10, 00));
+//		time4.setShowDate(LocalDate.of(2024, 1, 31));
+//		time4.setShowTime(LocalTime.of(10, 00));
+		time3.setMovieTime(LocalDateTime.of(2024, 1, 31, 10, 00));
 		time4.setConnectMovie(theBeekeeper.getId());
 		time4.setMovie(theBeekeeper);
 		time4.setTheater(minTheater2);
@@ -776,8 +785,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(minDaiTheater1.getId(), minDaiPremiumSeatPattern);
 		
 		ShowTime time5 = new ShowTime();
-		time5.setShowDate(LocalDate.of(2024, 1, 30));
-		time5.setShowTime(LocalTime.of(8, 30));
+//		time5.setShowDate(LocalDate.of(2024, 1, 30));
+//		time5.setShowTime(LocalTime.of(8, 30));
+		time5.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time5.setConnectMovie(theBeekeeper.getId());
 		time5.setMovie(theBeekeeper);
 		time5.setTheater(minDaiTheater1);
@@ -806,8 +816,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(minDaiTheater2.getId(), minDaiPremiumSeatPattern2);
 		
 		ShowTime time6 = new ShowTime();
-		time6.setShowDate(LocalDate.of(2024, 1, 30));
-		time6.setShowTime(LocalTime.of(8, 30));
+//		time6.setShowDate(LocalDate.of(2024, 1, 30));
+//		time6.setShowTime(LocalTime.of(8, 30));
+		time6.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time6.setConnectMovie(noWayUp.getId());
 		time6.setMovie(noWayUp);
 		time6.setTheater(minDaiTheater2);
@@ -841,8 +852,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(minYgnTheater1.getId(), minYgnPremiumSeatPattern);
 		
 		ShowTime time7 = new ShowTime();
-		time7.setShowDate(LocalDate.of(2024, 1, 30));
-		time7.setShowTime(LocalTime.of(8, 30));
+//		time7.setShowDate(LocalDate.of(2024, 1, 30));
+//		time7.setShowTime(LocalTime.of(8, 30));
+		time7.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time7.setConnectMovie(ds.getId());
 		time7.setMovie(ds);
 		time7.setTheater(minYgnTheater1);
@@ -871,8 +883,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(minYgnTheater2.getId(), minYgnPremiumSeatPattern2);
 		
 		ShowTime time8 = new ShowTime();
-		time8.setShowDate(LocalDate.of(2024, 1, 30));
-		time8.setShowTime(LocalTime.of(8, 30));
+//		time8.setShowDate(LocalDate.of(2024, 1, 30));
+//		time8.setShowTime(LocalTime.of(8, 30));
+		time8.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time8.setConnectMovie(madameWeb.getId());
 		time8.setMovie(madameWeb);
 		time8.setTheater(minYgnTheater2);
@@ -906,8 +919,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(myomaTheater1.getId(), myomaPremiumSeatPattern);
 		
 		ShowTime time9 = new ShowTime();
-		time9.setShowDate(LocalDate.of(2024, 1, 30));
-		time9.setShowTime(LocalTime.of(8, 30));
+//		time9.setShowDate(LocalDate.of(2024, 1, 30));
+//		time9.setShowTime(LocalTime.of(8, 30));
+		time9.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time9.setConnectMovie(theBeekeeper.getId());
 		time9.setMovie(theBeekeeper);
 		time9.setTheater(myomaTheater1);
@@ -936,8 +950,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(myomaTheater2.getId(), myomaPremiumSeatPattern2);
 		
 		ShowTime time10 = new ShowTime();
-		time10.setShowDate(LocalDate.of(2024, 1, 30));
-		time10.setShowTime(LocalTime.of(8, 30));
+//		time10.setShowDate(LocalDate.of(2024, 1, 30));
+//		time10.setShowTime(LocalTime.of(8, 30));
+		time10.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time10.setConnectMovie(ds.getId());
 		time10.setMovie(ds);
 		time10.setTheater(myomaTheater2);
