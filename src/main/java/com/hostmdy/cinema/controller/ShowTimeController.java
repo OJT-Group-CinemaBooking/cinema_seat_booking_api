@@ -32,11 +32,6 @@ public class ShowTimeController {
 		return ResponseEntity.ok(showTimeService.getAllShowTime());
 	}
 	
-	@PostMapping("/{theaterId}/{movieId}/create")
-	public ResponseEntity<ShowTime> createShowTime(@RequestBody ShowTime showTime,@PathVariable Long theaterId,@PathVariable Long movieId){
-		return ResponseEntity.ok(showTimeService.createShowTime(showTime, theaterId,movieId));
-	}
-	
 	@GetMapping("/{showTimeId}")
 	public ResponseEntity<ShowTime> getShowTimeById(@PathVariable Long showTimeId){
 		Optional<ShowTime> showTimeOptional = showTimeService.getShowTimeById(showTimeId);
@@ -55,6 +50,11 @@ public class ShowTimeController {
 	@GetMapping("/theater/{theaterId}")
 	public ResponseEntity<List<ShowTime>> getShowTimeByTheaterId(@PathVariable Long theaterId){
 		return ResponseEntity.ok(showTimeService.getShowTimeByTheaterId(theaterId));
+	}
+	
+	@PostMapping("/{theaterId}/{movieId}/create")
+	public ResponseEntity<ShowTime> createShowTime(@RequestBody ShowTime showTime,@PathVariable Long theaterId,@PathVariable Long movieId){
+		return ResponseEntity.ok(showTimeService.createShowTime(showTime, theaterId,movieId));
 	}
 	
 	@PutMapping("/update")
