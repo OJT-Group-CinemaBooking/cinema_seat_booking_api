@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin("http://localhost:3000")
 public class ImageController {
 	
-	private final Environment env;
+	private final Environment env; 
 	
 	@PostMapping("/upload/{pathName}/{imageName}")// give pathName from frontend (movie or crew)
 	public ResponseEntity<String> imageUpload(@PathParam("file") MultipartFile file,@PathVariable String pathName,@PathVariable String imageName) {
