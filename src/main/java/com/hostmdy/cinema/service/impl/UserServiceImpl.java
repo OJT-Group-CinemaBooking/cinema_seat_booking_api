@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
-	private final BCryptPasswordEncoder passwordEncoder;
+//	private final BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public Boolean isUsernameExists(String username) {
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
 			throw new UserAlreadyExistsException("email already exists");
 		}
 
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+//		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
 		Optional<Role> roleOptional = roleRepository.findByName("ROLE_USER");
 
