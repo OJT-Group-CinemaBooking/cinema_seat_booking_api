@@ -29,7 +29,7 @@ public class UserPayment {
 	private String zip;
 	
 	private String holderName;
-	private Integer cardNumber;
+	private String cardNumber;
 	
 	@Enumerated(EnumType.STRING)
 	private CardType cardType;

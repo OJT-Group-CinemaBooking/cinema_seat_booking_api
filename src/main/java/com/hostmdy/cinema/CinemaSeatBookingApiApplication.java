@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,8 +29,10 @@ import com.hostmdy.cinema.repository.GenereRepository;
 import com.hostmdy.cinema.repository.MovieCrewRepository;
 import com.hostmdy.cinema.repository.MovieGenereRepository;
 import com.hostmdy.cinema.repository.MovieRepository;
+import com.hostmdy.cinema.repository.RoleRepository;
 import com.hostmdy.cinema.domain.Theater;
 import com.hostmdy.cinema.domain.User;
+import com.hostmdy.cinema.domain.security.Role;
 import com.hostmdy.cinema.repository.SeatRepository;
 import com.hostmdy.cinema.repository.ShowTimeRepository;
 import com.hostmdy.cinema.repository.TheaterRepository;
@@ -37,10 +40,14 @@ import com.hostmdy.cinema.service.MovieService;
 import com.hostmdy.cinema.service.CouponService;
 import com.hostmdy.cinema.service.SeatPatternService;
 import com.hostmdy.cinema.service.ShowTimeService;
+
+import lombok.extern.slf4j.Slf4j;
+
 import com.hostmdy.cinema.repository.UserRepository;
 
 
 @SpringBootApplication
+@Slf4j
 public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	
 	@Autowired
@@ -85,6 +92,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	@Autowired
 	public CouponService couponService;
 
+	@Autowired
+	public RoleRepository roleRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(CinemaSeatBookingApiApplication.class, args);
 	}
@@ -93,6 +103,25 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+		Optional<Role> roleUser = roleRepository.findByName("ROLE_USER");
+		
+		if(roleUser.isEmpty()) {
+			Role role = new Role();
+			role.setId(1);
+			role.setName("ROLE_USER");
+			role = roleRepository.save(role);
+			log.info("role: {} is created",role.getName());
+		}
+		
+		Optional<Role> roleAdmin = roleRepository.findByName("ROLE_ADMIN");
+		
+		if(roleAdmin.isEmpty()) {
+			Role role = new Role();
+			role.setId(2);
+			role.setName("ROLE_ADMIN");
+			role = roleRepository.save(role);
+			log.info("role: {} is created",role.getName());
+		}
 		
 		// generes data
 		Genere action = new Genere();
@@ -653,17 +682,27 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		// seatPattern for mingalar->minTheater1
 
 		ShowTime time1 = new ShowTime();
-//		time1.setShowDate(LocalDate.of(2024, 2, 29));
-//		time1.setShowTime(LocalTime.of(8, 30));
 		time1.setMovieTime(LocalDateTime.of(2024, 2, 29, 8, 30));
 		time1.setConnectMovie(theBoyandTheHeron.getId());
 		time1.setMovie(theBoyandTheHeron);
 		time1.setTheater(minTheater1);
 		showTimeService.createShowTime(time1, minTheater1.getId(), theBoyandTheHeron.getId());
+		
+		ShowTime time0 = new ShowTime();
+		time0.setMovieTime(LocalDateTime.of(2024,2,20,10,30));
+		time0.setConnectMovie(theBoyandTheHeron.getId());
+		time0.setMovie(theBoyandTheHeron);
+		time0.setTheater(minTheater1);
+		showTimeService.createShowTime(time0, minTheater1.getId(), theBoyandTheHeron.getId());
+		
+		ShowTime time01 = new ShowTime();
+		time01.setMovieTime(LocalDateTime.of(2024,3,20,6,30));
+		time01.setConnectMovie(theBoyandTheHeron.getId());
+		time01.setMovie(theBoyandTheHeron);
+		time01.setTheater(minTheater1);
+		showTimeService.createShowTime(time01, minTheater1.getId(), theBoyandTheHeron.getId());
 
 		ShowTime time2 = new ShowTime();
-//		time2.setShowDate(LocalDate.of(2024, 2, 27));
-//		time2.setShowTime(LocalTime.of(11, 00));
 		time2.setMovieTime(LocalDateTime.of(2024, 2, 27, 11, 00));
 		time2.setConnectMovie(theBeekeeper.getId());
 		time2.setMovie(theBeekeeper);
@@ -671,8 +710,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		showTimeService.createShowTime(time2, minTheater1.getId(), theBeekeeper.getId());
 		
 		ShowTime time11 = new ShowTime();
-//		time11.setShowDate(LocalDate.of(2024, 2, 27));
-//		time11.setShowTime(LocalTime.of(11, 00));
 		time11.setMovieTime(LocalDateTime.of(2024, 2, 27, 11, 00));
 		time11.setConnectMovie(noWayUp.getId());
 		time11.setMovie(noWayUp);
@@ -680,8 +717,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		showTimeService.createShowTime(time11, minTheater1.getId(), noWayUp.getId());
 		
 		ShowTime time12 = new ShowTime();
-//		time12.setShowDate(LocalDate.of(2024, 2, 27));
-//		time12.setShowTime(LocalTime.of(11, 00));
 		time12.setMovieTime(LocalDateTime.of(2024, 2, 27, 11, 00));
 		time12.setConnectMovie(dm.getId());
 		time12.setMovie(dm);
@@ -689,8 +724,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		showTimeService.createShowTime(time12, minTheater1.getId(), dm.getId());
 		
 		ShowTime time13 = new ShowTime();
-//		time13.setShowDate(LocalDate.of(2024, 2, 27));
-//		time13.setShowTime(LocalTime.of(11, 00));
 		time13.setMovieTime(LocalDateTime.of(2024, 2, 27, 11, 00));
 		time13.setConnectMovie(ds.getId());
 		time13.setMovie(ds);
@@ -698,8 +731,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		showTimeService.createShowTime(time13, minTheater1.getId(), ds.getId());
 		
 		ShowTime time14 = new ShowTime();
-//		time14.setShowDate(LocalDate.of(2024, 2, 27));
-//		time14.setShowTime(LocalTime.of(11, 00));
 		time14.setMovieTime(LocalDateTime.of(2024, 2, 27, 11, 00));
 		time14.setConnectMovie(madameWeb.getId());
 		time14.setMovie(madameWeb);
@@ -739,8 +770,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		// seatPattern for mingalar->minTheater1
 
 		ShowTime time3 = new ShowTime();
-//		time3.setShowDate(LocalDate.of(2024, 2, 28));
-//		time3.setShowTime(LocalTime.of(8, 30));
 		time3.setMovieTime(LocalDateTime.of(2024, 2, 28, 8, 30));
 		time3.setConnectMovie(dm.getId());
 		time3.setMovie(dm);
@@ -748,8 +777,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		showTimeService.createShowTime(time3, minTheater2.getId(), dm.getId());
 
 		ShowTime time4 = new ShowTime();
-//		time4.setShowDate(LocalDate.of(2024, 1, 31));
-//		time4.setShowTime(LocalTime.of(10, 00));
 		time3.setMovieTime(LocalDateTime.of(2024, 1, 31, 10, 00));
 		time4.setConnectMovie(theBeekeeper.getId());
 		time4.setMovie(theBeekeeper);
@@ -785,8 +812,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(minDaiTheater1.getId(), minDaiPremiumSeatPattern);
 		
 		ShowTime time5 = new ShowTime();
-//		time5.setShowDate(LocalDate.of(2024, 1, 30));
-//		time5.setShowTime(LocalTime.of(8, 30));
 		time5.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time5.setConnectMovie(theBeekeeper.getId());
 		time5.setMovie(theBeekeeper);
@@ -816,8 +841,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(minDaiTheater2.getId(), minDaiPremiumSeatPattern2);
 		
 		ShowTime time6 = new ShowTime();
-//		time6.setShowDate(LocalDate.of(2024, 1, 30));
-//		time6.setShowTime(LocalTime.of(8, 30));
 		time6.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time6.setConnectMovie(noWayUp.getId());
 		time6.setMovie(noWayUp);
@@ -852,8 +875,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(minYgnTheater1.getId(), minYgnPremiumSeatPattern);
 		
 		ShowTime time7 = new ShowTime();
-//		time7.setShowDate(LocalDate.of(2024, 1, 30));
-//		time7.setShowTime(LocalTime.of(8, 30));
 		time7.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time7.setConnectMovie(ds.getId());
 		time7.setMovie(ds);
@@ -883,8 +904,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(minYgnTheater2.getId(), minYgnPremiumSeatPattern2);
 		
 		ShowTime time8 = new ShowTime();
-//		time8.setShowDate(LocalDate.of(2024, 1, 30));
-//		time8.setShowTime(LocalTime.of(8, 30));
 		time8.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time8.setConnectMovie(madameWeb.getId());
 		time8.setMovie(madameWeb);
@@ -919,8 +938,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(myomaTheater1.getId(), myomaPremiumSeatPattern);
 		
 		ShowTime time9 = new ShowTime();
-//		time9.setShowDate(LocalDate.of(2024, 1, 30));
-//		time9.setShowTime(LocalTime.of(8, 30));
 		time9.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time9.setConnectMovie(theBeekeeper.getId());
 		time9.setMovie(theBeekeeper);
@@ -950,8 +967,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(myomaTheater2.getId(), myomaPremiumSeatPattern2);
 		
 		ShowTime time10 = new ShowTime();
-//		time10.setShowDate(LocalDate.of(2024, 1, 30));
-//		time10.setShowTime(LocalTime.of(8, 30));
 		time10.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time10.setConnectMovie(ds.getId());
 		time10.setMovie(ds);
@@ -962,9 +977,10 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		user1.setFirstname("Mg");
 		user1.setLastname("Mg");
 		user1.setUsername("mm001");
-		user1.setEmail("mm@gmail.com");
+		user1.setEmail("kazuyasakurama@gmail.com");
 		user1.setPassword("1234");
 		user1.setRole("user");
+		user1.setEnable(false);
 		
 		userRepository.save(user1);
 		
