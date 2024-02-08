@@ -34,7 +34,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		// TODO Auto-generated method stub
 		try {
 			String token = getTokenFromRequest(request);
-			
 			if(StringUtils.hasText(token) && tokenProvider.validateToken(token)) {
 				Long userId = tokenProvider.getUserIdFromToken(token);
 				User userDetails = userSecurityService.loadUserById(userId);

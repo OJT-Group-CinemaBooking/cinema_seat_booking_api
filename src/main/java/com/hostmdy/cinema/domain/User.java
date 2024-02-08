@@ -16,12 +16,8 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hostmdy.cinema.domain.security.Authority;
 import com.hostmdy.cinema.domain.security.UserRoles;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -59,10 +55,7 @@ public class User implements UserDetails {
 	private String username;
 	private String email;
 	private String password;
-	private String role;
-	private Boolean enable;
-
-	private byte[] image;
+	private Boolean enable = false;
 
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
@@ -129,7 +122,7 @@ public class User implements UserDetails {
 	@JsonIgnore
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return true;
+		return enable;
 
 	}
 }

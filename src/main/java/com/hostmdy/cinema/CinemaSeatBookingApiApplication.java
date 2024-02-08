@@ -3,7 +3,6 @@ package com.hostmdy.cinema;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +39,7 @@ import com.hostmdy.cinema.service.MovieService;
 import com.hostmdy.cinema.service.CouponService;
 import com.hostmdy.cinema.service.SeatPatternService;
 import com.hostmdy.cinema.service.ShowTimeService;
+import com.hostmdy.cinema.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -85,6 +85,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
   
 	@Autowired
 	public UserRepository userRepository;
+	
+	@Autowired
+	public UserService userService;
   
 	@Autowired
   	public MovieService movieService;
@@ -122,6 +125,14 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 			role = roleRepository.save(role);
 			log.info("role: {} is created",role.getName());
 		}
+
+		User user1 = new User();
+		user1.setFirstname("Mg");
+		user1.setLastname("Mg");
+		user1.setUsername("mm001");
+		user1.setEmail("kazuyasakurama@gmail.com");
+		user1.setPassword("1234");
+		userService.createUser(user1);
 		
 		// generes data
 		Genere action = new Genere();
@@ -972,17 +983,6 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		time10.setMovie(ds);
 		time10.setTheater(myomaTheater2);
 		showTimeService.createShowTime(time10, myomaTheater2.getId(), ds.getId());
-
-		User user1 = new User();
-		user1.setFirstname("Mg");
-		user1.setLastname("Mg");
-		user1.setUsername("mm001");
-		user1.setEmail("kazuyasakurama@gmail.com");
-		user1.setPassword("1234");
-		user1.setRole("user");
-		user1.setEnable(false);
-		
-		userRepository.save(user1);
 		
 		Coupon kyimal1234 = new Coupon();
 		kyimal1234.setCouponCode("kyimal1234");

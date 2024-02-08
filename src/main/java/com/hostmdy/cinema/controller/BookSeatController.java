@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hostmdy.cinema.domain.BookSeat;
 import com.hostmdy.cinema.domain.BoughtSeat;
-import com.hostmdy.cinema.domain.CardType;
 import com.hostmdy.cinema.domain.Coupon;
 import com.hostmdy.cinema.domain.Ticket;
-import com.hostmdy.cinema.domain.User;
 import com.hostmdy.cinema.domain.UserPayment;
 import com.hostmdy.cinema.service.BookSeatService;
 import com.hostmdy.cinema.service.BoughtSeatService;
