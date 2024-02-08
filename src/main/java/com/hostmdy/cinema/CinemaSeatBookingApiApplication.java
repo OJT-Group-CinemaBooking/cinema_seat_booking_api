@@ -2,6 +2,7 @@ package com.hostmdy.cinema;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -652,52 +653,65 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		// seatPattern for mingalar->minTheater1
 
 		ShowTime time1 = new ShowTime();
-		time1.setShowDate(LocalDate.of(2024, 2, 29));
-		time1.setShowTime(LocalTime.of(8, 30));
+		time1.setMovieTime(LocalDateTime.of(2024,3,20,8,30));
 		time1.setConnectMovie(theBoyandTheHeron.getId());
 		time1.setMovie(theBoyandTheHeron);
 		time1.setTheater(minTheater1);
 		showTimeService.createShowTime(time1, minTheater1.getId(), theBoyandTheHeron.getId());
+		
+		ShowTime time0 = new ShowTime();
+		time0.setMovieTime(LocalDateTime.of(2024,2,20,10,30));
+		time0.setConnectMovie(theBoyandTheHeron.getId());
+		time0.setMovie(theBoyandTheHeron);
+		time0.setTheater(minTheater1);
+		showTimeService.createShowTime(time0, minTheater1.getId(), theBoyandTheHeron.getId());
+		
+		ShowTime time01 = new ShowTime();
+		time01.setMovieTime(LocalDateTime.of(2024,3,20,6,30));
+		time01.setConnectMovie(theBoyandTheHeron.getId());
+		time01.setMovie(theBoyandTheHeron);
+		time01.setTheater(minTheater1);
+		showTimeService.createShowTime(time01, minTheater1.getId(), theBoyandTheHeron.getId());
 
-		ShowTime time2 = new ShowTime();
-		time2.setShowDate(LocalDate.of(2024, 2, 27));
-		time2.setShowTime(LocalTime.of(11, 00));
-		time2.setConnectMovie(theBeekeeper.getId());
-		time2.setMovie(theBeekeeper);
-		time2.setTheater(minTheater1);
-		showTimeService.createShowTime(time2, minTheater1.getId(), theBeekeeper.getId());
-		
-		ShowTime time11 = new ShowTime();
-		time11.setShowDate(LocalDate.of(2024, 2, 27));
-		time11.setShowTime(LocalTime.of(11, 00));
-		time11.setConnectMovie(noWayUp.getId());
-		time11.setMovie(noWayUp);
-		time11.setTheater(minTheater1);
-		showTimeService.createShowTime(time11, minTheater1.getId(), noWayUp.getId());
-		
-		ShowTime time12 = new ShowTime();
-		time12.setShowDate(LocalDate.of(2024, 2, 27));
-		time12.setShowTime(LocalTime.of(11, 00));
-		time12.setConnectMovie(dm.getId());
-		time12.setMovie(dm);
-		time12.setTheater(minTheater1);
-		showTimeService.createShowTime(time12, minTheater1.getId(), dm.getId());
-		
-		ShowTime time13 = new ShowTime();
-		time13.setShowDate(LocalDate.of(2024, 2, 27));
-		time13.setShowTime(LocalTime.of(11, 00));
-		time13.setConnectMovie(ds.getId());
-		time13.setMovie(ds);
-		time13.setTheater(minTheater1);
-		showTimeService.createShowTime(time13, minTheater1.getId(), ds.getId());
-		
-		ShowTime time14 = new ShowTime();
-		time14.setShowDate(LocalDate.of(2024, 2, 27));
-		time14.setShowTime(LocalTime.of(11, 00));
-		time14.setConnectMovie(madameWeb.getId());
-		time14.setMovie(madameWeb);
-		time14.setTheater(minTheater1);
-		showTimeService.createShowTime(time14, minTheater1.getId(), madameWeb.getId());
+//		ShowTime time2 = new ShowTime();
+//		time2.setShowDate(LocalDate.of(2024, 2, 27));
+//		time2.setShowTime(LocalTime.of(11, 00));
+//		time2.setConnectMovie(theBeekeeper.getId());
+//		time2.setMovie(theBeekeeper);
+//		time2.setTheater(minTheater1);
+//		showTimeService.createShowTime(time2, minTheater1.getId(), theBeekeeper.getId());
+//		
+//		ShowTime time11 = new ShowTime();
+//		time11.setShowDate(LocalDate.of(2024, 2, 27));
+//		time11.setShowTime(LocalTime.of(11, 00));
+//		time11.setConnectMovie(noWayUp.getId());
+//		time11.setMovie(noWayUp);
+//		time11.setTheater(minTheater1);
+//		showTimeService.createShowTime(time11, minTheater1.getId(), noWayUp.getId());
+//		
+//		ShowTime time12 = new ShowTime();
+//		time12.setShowDate(LocalDate.of(2024, 2, 27));
+//		time12.setShowTime(LocalTime.of(11, 00));
+//		time12.setConnectMovie(dm.getId());
+//		time12.setMovie(dm);
+//		time12.setTheater(minTheater1);
+//		showTimeService.createShowTime(time12, minTheater1.getId(), dm.getId());
+//		
+//		ShowTime time13 = new ShowTime();
+//		time13.setShowDate(LocalDate.of(2024, 2, 27));
+//		time13.setShowTime(LocalTime.of(11, 00));
+//		time13.setConnectMovie(ds.getId());
+//		time13.setMovie(ds);
+//		time13.setTheater(minTheater1);
+//		showTimeService.createShowTime(time13, minTheater1.getId(), ds.getId());
+//		
+//		ShowTime time14 = new ShowTime();
+//		time14.setShowDate(LocalDate.of(2024, 2, 27));
+//		time14.setShowTime(LocalTime.of(11, 00));
+//		time14.setConnectMovie(madameWeb.getId());
+//		time14.setMovie(madameWeb);
+//		time14.setTheater(minTheater1);
+//		showTimeService.createShowTime(time14, minTheater1.getId(), madameWeb.getId());
 	
 
 		Theater minTheater2 = new Theater();
@@ -731,21 +745,21 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		seatPatternService.createSeatPattern(minTheater2.getId(), minTwinSeatPattern2);
 		// seatPattern for mingalar->minTheater1
 
-		ShowTime time3 = new ShowTime();
-		time3.setShowDate(LocalDate.of(2024, 2, 28));
-		time3.setShowTime(LocalTime.of(8, 30));
-		time3.setConnectMovie(dm.getId());
-		time3.setMovie(dm);
-		time3.setTheater(minTheater2);
-		showTimeService.createShowTime(time3, minTheater2.getId(), dm.getId());
-
-		ShowTime time4 = new ShowTime();
-		time4.setShowDate(LocalDate.of(2024, 1, 31));
-		time4.setShowTime(LocalTime.of(10, 00));
-		time4.setConnectMovie(theBeekeeper.getId());
-		time4.setMovie(theBeekeeper);
-		time4.setTheater(minTheater2);
-		showTimeService.createShowTime(time4, minTheater2.getId(), theBeekeeper.getId());
+//		ShowTime time3 = new ShowTime();
+//		time3.setShowDate(LocalDate.of(2024, 2, 28));
+//		time3.setShowTime(LocalTime.of(8, 30));
+//		time3.setConnectMovie(dm.getId());
+//		time3.setMovie(dm);
+//		time3.setTheater(minTheater2);
+//		showTimeService.createShowTime(time3, minTheater2.getId(), dm.getId());
+//
+//		ShowTime time4 = new ShowTime();
+//		time4.setShowDate(LocalDate.of(2024, 1, 31));
+//		time4.setShowTime(LocalTime.of(10, 00));
+//		time4.setConnectMovie(theBeekeeper.getId());
+//		time4.setMovie(theBeekeeper);
+//		time4.setTheater(minTheater2);
+//		showTimeService.createShowTime(time4, minTheater2.getId(), theBeekeeper.getId());
 		
 		
 		Cinema mingalarDaimond = new Cinema();
@@ -775,13 +789,13 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		minDaiPremiumSeatPattern.setRowsOrder(1);
 		seatPatternService.createSeatPattern(minDaiTheater1.getId(), minDaiPremiumSeatPattern);
 		
-		ShowTime time5 = new ShowTime();
-		time5.setShowDate(LocalDate.of(2024, 1, 30));
-		time5.setShowTime(LocalTime.of(8, 30));
-		time5.setConnectMovie(theBeekeeper.getId());
-		time5.setMovie(theBeekeeper);
-		time5.setTheater(minDaiTheater1);
-		showTimeService.createShowTime(time5, minDaiTheater1.getId(), theBeekeeper.getId());
+//		ShowTime time5 = new ShowTime();
+//		time5.setShowDate(LocalDate.of(2024, 1, 30));
+//		time5.setShowTime(LocalTime.of(8, 30));
+//		time5.setConnectMovie(theBeekeeper.getId());
+//		time5.setMovie(theBeekeeper);
+//		time5.setTheater(minDaiTheater1);
+//		showTimeService.createShowTime(time5, minDaiTheater1.getId(), theBeekeeper.getId());
 		
 		Theater minDaiTheater2 = new Theater();
 		minDaiTheater2.setName("MDD II");
@@ -805,13 +819,13 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		minDaiPremiumSeatPattern2.setRowsOrder(1);
 		seatPatternService.createSeatPattern(minDaiTheater2.getId(), minDaiPremiumSeatPattern2);
 		
-		ShowTime time6 = new ShowTime();
-		time6.setShowDate(LocalDate.of(2024, 1, 30));
-		time6.setShowTime(LocalTime.of(8, 30));
-		time6.setConnectMovie(noWayUp.getId());
-		time6.setMovie(noWayUp);
-		time6.setTheater(minDaiTheater2);
-		showTimeService.createShowTime(time6, minDaiTheater2.getId(), noWayUp.getId());
+//		ShowTime time6 = new ShowTime();
+//		time6.setShowDate(LocalDate.of(2024, 1, 30));
+//		time6.setShowTime(LocalTime.of(8, 30));
+//		time6.setConnectMovie(noWayUp.getId());
+//		time6.setMovie(noWayUp);
+//		time6.setTheater(minDaiTheater2);
+//		showTimeService.createShowTime(time6, minDaiTheater2.getId(), noWayUp.getId());
 		
 		Cinema mingalarYgn = new Cinema();
 		mingalarYgn.setName("Mingalar");
@@ -840,13 +854,13 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		minYgnPremiumSeatPattern.setRowsOrder(1);
 		seatPatternService.createSeatPattern(minYgnTheater1.getId(), minYgnPremiumSeatPattern);
 		
-		ShowTime time7 = new ShowTime();
-		time7.setShowDate(LocalDate.of(2024, 1, 30));
-		time7.setShowTime(LocalTime.of(8, 30));
-		time7.setConnectMovie(ds.getId());
-		time7.setMovie(ds);
-		time7.setTheater(minYgnTheater1);
-		showTimeService.createShowTime(time7, minYgnTheater1.getId(), ds.getId());
+//		ShowTime time7 = new ShowTime();
+//		time7.setShowDate(LocalDate.of(2024, 1, 30));
+//		time7.setShowTime(LocalTime.of(8, 30));
+//		time7.setConnectMovie(ds.getId());
+//		time7.setMovie(ds);
+//		time7.setTheater(minYgnTheater1);
+//		showTimeService.createShowTime(time7, minYgnTheater1.getId(), ds.getId());
 		
 		Theater minYgnTheater2 = new Theater();
 		minYgnTheater2.setName("MDR II");
@@ -870,13 +884,13 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		minYgnPremiumSeatPattern2.setRowsOrder(1);
 		seatPatternService.createSeatPattern(minYgnTheater2.getId(), minYgnPremiumSeatPattern2);
 		
-		ShowTime time8 = new ShowTime();
-		time8.setShowDate(LocalDate.of(2024, 1, 30));
-		time8.setShowTime(LocalTime.of(8, 30));
-		time8.setConnectMovie(madameWeb.getId());
-		time8.setMovie(madameWeb);
-		time8.setTheater(minYgnTheater2);
-		showTimeService.createShowTime(time8, minYgnTheater2.getId(), madameWeb.getId());
+//		ShowTime time8 = new ShowTime();
+//		time8.setShowDate(LocalDate.of(2024, 1, 30));
+//		time8.setShowTime(LocalTime.of(8, 30));
+//		time8.setConnectMovie(madameWeb.getId());
+//		time8.setMovie(madameWeb);
+//		time8.setTheater(minYgnTheater2);
+//		showTimeService.createShowTime(time8, minYgnTheater2.getId(), madameWeb.getId());
 		
 		Cinema myoma = new Cinema();
 		myoma.setName("Myoma Cinema");
@@ -905,13 +919,13 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		myomaPremiumSeatPattern.setRowsOrder(1);
 		seatPatternService.createSeatPattern(myomaTheater1.getId(), myomaPremiumSeatPattern);
 		
-		ShowTime time9 = new ShowTime();
-		time9.setShowDate(LocalDate.of(2024, 1, 30));
-		time9.setShowTime(LocalTime.of(8, 30));
-		time9.setConnectMovie(theBeekeeper.getId());
-		time9.setMovie(theBeekeeper);
-		time9.setTheater(myomaTheater1);
-		showTimeService.createShowTime(time9, myomaTheater1.getId(), theBeekeeper.getId());
+//		ShowTime time9 = new ShowTime();
+//		time9.setShowDate(LocalDate.of(2024, 1, 30));
+//		time9.setShowTime(LocalTime.of(8, 30));
+//		time9.setConnectMovie(theBeekeeper.getId());
+//		time9.setMovie(theBeekeeper);
+//		time9.setTheater(myomaTheater1);
+//		showTimeService.createShowTime(time9, myomaTheater1.getId(), theBeekeeper.getId());
 		
 		Theater myomaTheater2 = new Theater();
 		myomaTheater2.setName("MDR II");
@@ -935,21 +949,22 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		myomaPremiumSeatPattern2.setRowsOrder(1);
 		seatPatternService.createSeatPattern(myomaTheater2.getId(), myomaPremiumSeatPattern2);
 		
-		ShowTime time10 = new ShowTime();
-		time10.setShowDate(LocalDate.of(2024, 1, 30));
-		time10.setShowTime(LocalTime.of(8, 30));
-		time10.setConnectMovie(ds.getId());
-		time10.setMovie(ds);
-		time10.setTheater(myomaTheater2);
-		showTimeService.createShowTime(time10, myomaTheater2.getId(), ds.getId());
+//		ShowTime time10 = new ShowTime();
+//		time10.setShowDate(LocalDate.of(2024, 1, 30));
+//		time10.setShowTime(LocalTime.of(8, 30));
+//		time10.setConnectMovie(ds.getId());
+//		time10.setMovie(ds);
+//		time10.setTheater(myomaTheater2);
+//		showTimeService.createShowTime(time10, myomaTheater2.getId(), ds.getId());
 
 		User user1 = new User();
 		user1.setFirstname("Mg");
 		user1.setLastname("Mg");
 		user1.setUsername("mm001");
-		user1.setEmail("mm@gmail.com");
+		user1.setEmail("kazuyasakurama@gmail.com");
 		user1.setPassword("1234");
 		user1.setRole("user");
+		user1.setEnable(false);
 		
 		userRepository.save(user1);
 		

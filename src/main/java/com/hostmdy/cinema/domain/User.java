@@ -5,7 +5,12 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.CascadeType;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hostmdy.cinema.domain.security.OneTimePassword;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +43,7 @@ public class User {
 	private String email;
 	private String password;
 	private String role;
+	private Boolean enable;
 
 	private byte[] image;
 
@@ -47,6 +53,16 @@ public class User {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "payment_id")
 	private UserPayment userPayment;
+	
+	@OneToMany(mappedBy = "user")
+	private List<UserCoupon> userCupons = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user")
+	private List<Ticket> tickets = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Set<OneTimePassword> otps = new HashSet<>();
 
 	@PrePersist
 	private void onPersist() {
@@ -57,10 +73,4 @@ public class User {
 	private void onUpdate() {
 		this.updatedAt = LocalDateTime.now();
 	}
-	
-	@OneToMany(mappedBy = "user")
-	private List<UserCoupon> userCupons = new ArrayList<>();
-
-	@OneToMany(mappedBy = "user")
-	private List<Ticket> tickets = new ArrayList<>();
 }

@@ -25,6 +25,7 @@ public class TicketServiceImpl implements TicketService {
 	private final ShowTimeRepository showTimeRepository;
 	private final UserRepository userRepository;
 	private final MovieRepository movieRepository;
+	
 
 	@Override
 	public List<Ticket> getAllTickets() {
@@ -68,6 +69,7 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public Ticket createTicket(Ticket ticket, Long showtimeId, String username) {
 		// TODO Auto-generated method stub
+		
 		Optional<ShowTime> showTimeOptional = showTimeRepository.findById(showtimeId);
 		Optional<User> userOptional = userRepository.findByUsername(username);
 		
@@ -76,7 +78,9 @@ public class TicketServiceImpl implements TicketService {
 		ticket.setMovieTitle(movie.getTitle());
 		ticket.setShowTime(showTime);
 		ticket.setUser(userOptional.get());
-		return saveTicket(ticket);
+		Ticket createdTicket = saveTicket(ticket);
+		
+		return createdTicket;
 	}
 
 }

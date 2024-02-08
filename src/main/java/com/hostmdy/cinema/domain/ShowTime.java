@@ -1,6 +1,7 @@
 package com.hostmdy.cinema.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +29,7 @@ public class ShowTime {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private LocalDate showDate;
-	private LocalTime showTime;
+	private LocalDateTime movieTime;
 	private Long connectMovie;
 	
 	@ManyToOne
