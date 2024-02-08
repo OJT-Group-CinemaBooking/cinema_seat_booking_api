@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,8 +29,10 @@ import com.hostmdy.cinema.repository.GenereRepository;
 import com.hostmdy.cinema.repository.MovieCrewRepository;
 import com.hostmdy.cinema.repository.MovieGenereRepository;
 import com.hostmdy.cinema.repository.MovieRepository;
+import com.hostmdy.cinema.repository.RoleRepository;
 import com.hostmdy.cinema.domain.Theater;
 import com.hostmdy.cinema.domain.User;
+import com.hostmdy.cinema.domain.security.Role;
 import com.hostmdy.cinema.repository.SeatRepository;
 import com.hostmdy.cinema.repository.ShowTimeRepository;
 import com.hostmdy.cinema.repository.TheaterRepository;
@@ -37,10 +40,14 @@ import com.hostmdy.cinema.service.MovieService;
 import com.hostmdy.cinema.service.CouponService;
 import com.hostmdy.cinema.service.SeatPatternService;
 import com.hostmdy.cinema.service.ShowTimeService;
+
+import lombok.extern.slf4j.Slf4j;
+
 import com.hostmdy.cinema.repository.UserRepository;
 
 
 @SpringBootApplication
+@Slf4j
 public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	
 	@Autowired
@@ -85,6 +92,9 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	@Autowired
 	public CouponService couponService;
 
+	@Autowired
+	public RoleRepository roleRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(CinemaSeatBookingApiApplication.class, args);
 	}
@@ -93,6 +103,25 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+		Optional<Role> roleUser = roleRepository.findByName("ROLE_USER");
+		
+		if(roleUser.isEmpty()) {
+			Role role = new Role();
+			role.setId(1);
+			role.setName("ROLE_USER");
+			role = roleRepository.save(role);
+			log.info("role: {} is created",role.getName());
+		}
+		
+		Optional<Role> roleAdmin = roleRepository.findByName("ROLE_ADMIN");
+		
+		if(roleAdmin.isEmpty()) {
+			Role role = new Role();
+			role.setId(2);
+			role.setName("ROLE_ADMIN");
+			role = roleRepository.save(role);
+			log.info("role: {} is created",role.getName());
+		}
 		
 		// generes data
 		Genere action = new Genere();
