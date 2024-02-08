@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hostmdy.cinema.domain.User;
 import com.hostmdy.cinema.domain.security.Role;
@@ -12,6 +13,7 @@ import com.hostmdy.cinema.domain.security.UserRoles;
 import com.hostmdy.cinema.exception.UserAlreadyExistsException;
 import com.hostmdy.cinema.repository.RoleRepository;
 import com.hostmdy.cinema.repository.UserRepository;
+import com.hostmdy.cinema.service.OTPService;
 import com.hostmdy.cinema.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,8 +24,9 @@ public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
-//	private final BCryptPasswordEncoder passwordEncoder;
-
+	private final BCryptPasswordEncoder passwordEncoder;
+	private final OTPService otpService;
+	
 	@Override
 	public Boolean isUsernameExists(String username) {
 		// TODO Auto-generated method stub
@@ -67,30 +70,34 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public User createUser(User user) {
 		// TODO Auto-generated method stub
-		if (isUsernameExists(user.getUsername())) {
+		if(isUsernameExists(user.getUsername())) {
 			throw new UserAlreadyExistsException("username already exists");
 		}
-
-		if (isEmailExists(user.getEmail())) {
+		
+		if(isEmailExists(user.getEmail())) {
 			throw new UserAlreadyExistsException("email already exists");
 		}
-
-//		user.setPassword(passwordEncoder.encode(user.getPassword()));
-
+		
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		
 		Optional<Role> roleOptional = roleRepository.findByName("ROLE_USER");
-
-		if (roleOptional.isEmpty()) {
+		
+		if(roleOptional.isEmpty()) {
 			throw new NullPointerException("ROLE_USER is not found");
 		}
-
+		
 		Role role = roleOptional.get();
 		UserRoles userRoles = new UserRoles(user, role);
 		user.getUserRoles().add(userRoles);
 		role.getUserRoles().add(userRoles);
 		
-		return saveUser(user);
+		User createdUser = saveUser(user);
+		otpService.createOTP(createdUser.getUsername());
+		
+		return createdUser;
 	}
 
 	@Override
