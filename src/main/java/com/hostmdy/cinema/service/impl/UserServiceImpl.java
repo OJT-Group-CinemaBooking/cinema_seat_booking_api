@@ -3,10 +3,14 @@ package com.hostmdy.cinema.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hostmdy.cinema.domain.User;
+import com.hostmdy.cinema.domain.security.Role;
+import com.hostmdy.cinema.domain.security.UserRoles;
 import com.hostmdy.cinema.exception.UserAlreadyExistsException;
+import com.hostmdy.cinema.repository.RoleRepository;
 import com.hostmdy.cinema.repository.UserRepository;
 import com.hostmdy.cinema.service.UserService;
 
@@ -15,9 +19,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-	
+
 	private final UserRepository userRepository;
-//	private final BCryptPasswordEncoder passwordEncoder;
+	private final RoleRepository roleRepository;
+	private final BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public Boolean isUsernameExists(String username) {
@@ -64,15 +69,27 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUser(User user) {
 		// TODO Auto-generated method stub
-		if(isUsernameExists(user.getUsername())) {
+		if (isUsernameExists(user.getUsername())) {
 			throw new UserAlreadyExistsException("username already exists");
 		}
-		
-		if(isEmailExists(user.getEmail())) {
+
+		if (isEmailExists(user.getEmail())) {
 			throw new UserAlreadyExistsException("email already exists");
 		}
 
-//		private final BCryptPasswordEncoder passwordEncoder;
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+		Optional<Role> roleOptional = roleRepository.findByName("ROLE_USER");
+
+		if (roleOptional.isEmpty()) {
+			throw new NullPointerException("ROLE_USER is not found");
+		}
+
+		Role role = roleOptional.get();
+		UserRoles userRoles = new UserRoles(user, role);
+		user.getUserRoles().add(userRoles);
+		role.getUserRoles().add(userRoles);
+		
 		return saveUser(user);
 	}
 
