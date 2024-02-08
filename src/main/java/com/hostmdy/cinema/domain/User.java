@@ -17,6 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hostmdy.cinema.domain.security.Authority;
 import com.hostmdy.cinema.domain.security.UserRoles;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -38,7 +41,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
-
+	
 	/**
 	 * 
 	 */
@@ -119,5 +122,6 @@ public class User implements UserDetails {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+
 	}
 }
