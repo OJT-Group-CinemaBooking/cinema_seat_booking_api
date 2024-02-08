@@ -8,7 +8,7 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.1</version>
 		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
+	</parent> 
 	<groupId>com.hostmdy</groupId>
 	<artifactId>cinema_seat_booking_api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>

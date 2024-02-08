@@ -976,7 +976,7 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 		myomaPremiumSeatPattern2.setColumnCount(16);
 		myomaPremiumSeatPattern2.setRowsOrder(1);
 		seatPatternService.createSeatPattern(myomaTheater2.getId(), myomaPremiumSeatPattern2);
-		
+
 		ShowTime time10 = new ShowTime();
 		time10.setMovieTime(LocalDateTime.of(2024, 1, 30, 8, 30));
 		time10.setConnectMovie(ds.getId());
