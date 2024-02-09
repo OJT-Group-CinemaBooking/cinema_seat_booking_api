@@ -1,5 +1,6 @@
 package com.hostmdy.cinema.controller;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
@@ -40,16 +41,15 @@ public class UserPaymentController {
 		return ResponseEntity.ok(userPaymentOptional.get());
 	}
 	
-	@PostMapping("/create")/*, @RequestBody String username*/
-	public ResponseEntity<UserPayment> createUserPayment(@RequestBody UserPayment payment){
-//		return ResponseEntity.ok(userPaymentService.createUserPayment(userPayment, username));
+	@PostMapping("/create")
+	public ResponseEntity<UserPayment> createUserPayment(@RequestBody UserPayment payment,Principal principal){
 		
-		return ResponseEntity.ok(userPaymentService.createUserPayment(payment, "mm001"));
+		return ResponseEntity.ok(userPaymentService.createUserPayment(payment, principal.getName()));
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<UserPayment> updateUserPayment(@RequestBody UserPayment userPayment, @RequestBody String username) {
-		return ResponseEntity.ok(userPaymentService.updateUserPayment(userPayment, username));
+	public ResponseEntity<UserPayment> updateUserPayment(@RequestBody UserPayment userPayment,Principal principal) {
+		return ResponseEntity.ok(userPaymentService.updateUserPayment(userPayment, principal.getName()));
 	}
 
 	@DeleteMapping("/{userPaymentId}/delete")

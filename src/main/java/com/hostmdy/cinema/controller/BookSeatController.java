@@ -1,5 +1,6 @@
 package com.hostmdy.cinema.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.core.env.Environment;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hostmdy.cinema.domain.BookSeat;
 import com.hostmdy.cinema.domain.BoughtSeat;
-import com.hostmdy.cinema.domain.CardType;
 import com.hostmdy.cinema.domain.Coupon;
 import com.hostmdy.cinema.domain.Ticket;
 import com.hostmdy.cinema.domain.UserPayment;
@@ -48,7 +48,7 @@ public class BookSeatController {
 	}
 	
 	@PostMapping("/booked/{showTimeId}/{couponId}")
-	public ResponseEntity<Ticket> getBookedSeat(@RequestBody List<BoughtSeat> boughtSeatList,@PathVariable Long showTimeId,@PathVariable Long couponId) {
+	public ResponseEntity<Ticket> getBookedSeat(@RequestBody List<BoughtSeat> boughtSeatList,@PathVariable Long showTimeId,@PathVariable Long couponId,Principal principal) {
 		Integer totalPrice = 0;
 		for (final BoughtSeat boughtSeat : boughtSeatList) {
 			totalPrice += boughtSeat.getPrice();
@@ -64,7 +64,7 @@ public class BookSeatController {
 			ticket.setActualPrice(totalPrice);
 		}
 		
-		Ticket createdTicket = ticketService.createTicket(ticket, showTimeId, "mm001");
+		Ticket createdTicket = ticketService.createTicket(ticket, showTimeId, principal.getName());
 		
 		for (final BoughtSeat boughtSeat : boughtSeatList) {
 			boughtSeat.setTicket(createdTicket);
@@ -76,7 +76,7 @@ public class BookSeatController {
 		createdTicket = ticketService.saveTicket(createdTicket);
 		
 		UserPayment userpayment = createdTicket.getUser().getUserPayment();
-		mailSender.send(mailConstructor.constructTemplateMail("kazuyasakurama@gmail.com", env.getProperty("ticket.mail.subject"), createdTicket,createdTicket.getBoughtSeats(),userpayment));
+		mailSender.send(mailConstructor.constructTemplateMail(createdTicket.getUser().getEmail(), env.getProperty("ticket.mail.subject"), createdTicket,createdTicket.getBoughtSeats(),userpayment));
 		
 		return ResponseEntity.ok(createdTicket);
 	}

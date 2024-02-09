@@ -1,5 +1,6 @@
 package com.hostmdy.cinema.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -44,10 +45,10 @@ public class CouponController {
 		return ResponseEntity.ok(couponService.CreateCoupon(coupon));
 	}
 	
-	@GetMapping("/{couponId}/{userId}/use")
-	public ResponseEntity<Coupon> useCouponCode(@PathVariable Long couponId,@PathVariable Long userId){
+	@GetMapping("/{couponId}/use")
+	public ResponseEntity<Coupon> useCouponCode(@PathVariable Long couponId,Principal principal){
 		
-		return ResponseEntity.ok(couponService.useCouponCode(couponId, userId));
+		return ResponseEntity.ok(couponService.useCouponCode(couponId, principal.getName()));
 	}
 	
 	@DeleteMapping("/{couponId}/delete")
