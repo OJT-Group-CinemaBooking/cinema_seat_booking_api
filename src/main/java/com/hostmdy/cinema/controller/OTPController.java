@@ -35,7 +35,7 @@ public class OTPController {
 	@PostMapping("/validate/{username}")
 	public ResponseEntity<?> validateOTP(@RequestBody OTPRequest otpRequest,@PathVariable String username){
 		boolean otpValidated = otpService.validateOTP(otpRequest.getCode(),username);
-		
+		System.out.println(otpRequest);
 		if(!otpValidated) {
 			throw new InvalidOTPException("otp is invalid");
 		}
