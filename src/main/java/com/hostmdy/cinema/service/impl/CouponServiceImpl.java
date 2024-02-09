@@ -62,13 +62,13 @@ public class CouponServiceImpl implements CouponService{
 
 	@Override
 	@Transactional
-	public Coupon useCouponCode(Long couponId,Long userId) {
+	public Coupon useCouponCode(Long couponId,String username) {
 		// TODO Auto-generated method stub
 		Optional<Coupon> couponOptional = couponRepository.findById(couponId);
 		
 		Coupon coupon = couponOptional.get();
 		
-		User user = findUserById(userId);
+		User user = findUserByUsername(username);
 		
 		coupon.setUserCount(coupon.getUserCount() - 1);
 		couponRepository.save(coupon);
@@ -76,10 +76,10 @@ public class CouponServiceImpl implements CouponService{
 		return coupon;
 	}
 	
-	private User findUserById(Long userId) {
-		Optional<User> userOptional = userRepository.findById(userId);
+	private User findUserByUsername(String username) {
+		Optional<User> userOptional = userRepository.findByUsername(username);
 		if(userOptional.isEmpty()) {
-			throw new DatabaseResourceNotFoundException("user","id","user with id="+userId+" is not found.");
+			throw new DatabaseResourceNotFoundException("user","id","user with username="+username+" is not found.");
 		}
 		return userOptional.get();
 	}
