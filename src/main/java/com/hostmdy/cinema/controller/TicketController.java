@@ -8,12 +8,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hostmdy.cinema.domain.ShowTime;
 import com.hostmdy.cinema.domain.Ticket;
 import com.hostmdy.cinema.exception.DatabaseResourceNotFoundException;
 import com.hostmdy.cinema.service.TicketService;
@@ -33,10 +30,10 @@ public class TicketController {
 		return ResponseEntity.ok(ticketService.getAllTickets());
 	}
 	
-	@GetMapping("/all/showtime")
-	public ResponseEntity<List<Ticket>> getAllTicketsByShowTime(@RequestBody ShowTime showTime){
-		return ResponseEntity.ok(ticketService.getAllTicketsByShowTime(showTime));
-	}
+//	@GetMapping("/all/showtime")
+//	public ResponseEntity<List<Ticket>> getAllTicketsByShowTime(@RequestBody ShowTime showTime){
+//		return ResponseEntity.ok(ticketService.getAllTicketsByShowTime(showTime));
+//	}
 	
 	@GetMapping("/{ticketId}")
 	public ResponseEntity<Ticket> getTicketById(@PathVariable Long ticketId){
@@ -48,10 +45,10 @@ public class TicketController {
 		return ResponseEntity.ok(ticketOptional.get());
 	}
 	
-	@PostMapping("/create/{showtimeId}")
-	public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket,@PathVariable Long showtimeId){
-		return ResponseEntity.ok(ticketService.createTicket(ticket, showtimeId, "mm001"));
-	}
+//	@PostMapping("/create/{showtimeId}")
+//	public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket,@PathVariable Long showtimeId){
+//		return ResponseEntity.ok(ticketService.createTicket(ticket, showtimeId, "mm001"));
+//	}
 	
 //	@PutMapping("/update")
 //	public ResponseEntity<Ticket> updateTicket(@RequestBody TicketRequest ticketRequest){
