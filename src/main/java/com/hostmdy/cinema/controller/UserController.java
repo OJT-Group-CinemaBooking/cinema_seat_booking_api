@@ -22,17 +22,16 @@ import com.hostmdy.cinema.config.JwtTokenProvider;
 import com.hostmdy.cinema.domain.User;
 import com.hostmdy.cinema.payload.LoginRequest;
 import com.hostmdy.cinema.payload.LoginResponse;
+import com.hostmdy.cinema.payload.UserAlreadyExistsExceptionResponse;
 import com.hostmdy.cinema.payload.UserRoleResponse;
 import com.hostmdy.cinema.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/user")
 @CrossOrigin("http://localhost:3000")
-@Slf4j
 public class UserController {
 	
 	private final static String TOKEN_PREFIX = "Bearer ";
@@ -94,7 +93,13 @@ public class UserController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<User> createUser(@RequestBody User user) {
+	public ResponseEntity<?> createUser(@RequestBody User user) {
+		if(userService.isUsernameExists(user.getUsername())) {
+			return ResponseEntity.status(403).body(new UserAlreadyExistsExceptionResponse("username already exists"));
+		}
+		if(userService.isEmailExists(user.getEmail())) {
+			return ResponseEntity.status(403).body(new UserAlreadyExistsExceptionResponse("email already exists"));
+		}
 		return ResponseEntity.status(200).body(userService.createUser(user));
 	}
 
