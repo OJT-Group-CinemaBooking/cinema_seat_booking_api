@@ -45,15 +45,6 @@ public class TicketServiceImpl implements TicketService {
 		return ticketRepository.findTicketByShowTime(showTime);
 	}
 
-//	
-//	Long Ticket saveTicket(Ticket ticket, ShowTime showTime) {
-//		// TODO Auto-generated method stub
-//		showTime.getTickets().add(ticket);
-//		showTimeRepository.save(showTime);
-//		ticket.setShowTime(showTime);
-//		return ticketRepository.save(ticket);
-//	}
-
 	@Override
 	public Optional<Ticket> getTicketById(Long ticketId) {
 		// TODO Auto-generated method stub
@@ -76,6 +67,9 @@ public class TicketServiceImpl implements TicketService {
 		ShowTime showTime = showTimeOptional.get();
 		Movie movie = movieRepository.findByShowTime(showTime).get();
 		ticket.setMovieTitle(movie.getTitle());
+		ticket.setCinema(showTime.getTheater().getCinema().getName());
+		ticket.setTheater(showTime.getTheater().getName());
+		ticket.setMovieTime(showTime.getMovieTime());
 		ticket.setShowTime(showTime);
 		ticket.setUser(userOptional.get());
 		Ticket createdTicket = saveTicket(ticket);
