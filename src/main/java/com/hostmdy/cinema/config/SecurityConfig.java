@@ -91,6 +91,7 @@ public class SecurityConfig {
 				.requestMatchers("/api/user/create").permitAll()
 				.requestMatchers("/api/user/login").permitAll()
 				.requestMatchers("/api/coupon/{couponId:[0-9]+}/use").permitAll()
+				.requestMatchers("/api/mail/send").permitAll()
 				.requestMatchers("/api/userpayment/{userPaymentId:[0-9]+}").hasRole("USER")
 				.requestMatchers("/api/userpayment/create").hasRole("USER")
 				.requestMatchers("/api/userpayment/update").hasRole("USER")

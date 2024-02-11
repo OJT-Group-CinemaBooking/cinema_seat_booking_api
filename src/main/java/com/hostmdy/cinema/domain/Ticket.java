@@ -33,6 +33,9 @@ public class Ticket {
 	private String movieTitle;
 	private Integer totalPrice;
 	private Integer actualPrice;
+	private String cinema;
+	private String theater;
+	private LocalDateTime movieTime;
 	
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
