@@ -65,7 +65,7 @@ public class SecurityConfig {
 			.securityMatcher("/api/**")
 			.authorizeHttpRequests(auth -> 
 				auth
-				.requestMatchers("/api/image/*/*.jpg").permitAll()
+				.requestMatchers("/api/image/**").permitAll()
 				.requestMatchers("/api/otp/**").permitAll()
 				.requestMatchers("/api/movie/all").permitAll()
 				.requestMatchers("/api/crew/all").permitAll()
