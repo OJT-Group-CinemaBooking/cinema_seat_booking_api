@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -39,10 +40,13 @@ public class Movie {
 	private boolean comingSoon;
 	private boolean popularNow;
 	private boolean showing;
+	
 	@Lob
+	@Column(columnDefinition = "BLOB NOT NULL")
 	private String trailer;
 	
 	@Lob
+	@Column(columnDefinition = "BLOB NOT NULL")
 	private String synopsis;
 	
 	private LocalDateTime createdAt;
