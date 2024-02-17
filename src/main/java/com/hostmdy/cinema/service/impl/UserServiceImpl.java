@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hostmdy.cinema.domain.User;
 import com.hostmdy.cinema.domain.security.Role;
 import com.hostmdy.cinema.domain.security.UserRoles;
-import com.hostmdy.cinema.exception.UserAlreadyExistsException;
 import com.hostmdy.cinema.repository.RoleRepository;
 import com.hostmdy.cinema.repository.UserRepository;
 import com.hostmdy.cinema.service.OTPService;
@@ -73,13 +72,6 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public User createUser(User user) {
 		// TODO Auto-generated method stub
-		if(isUsernameExists(user.getUsername())) {
-			throw new UserAlreadyExistsException("username already exists");
-		}
-		
-		if(isEmailExists(user.getEmail())) {
-			throw new UserAlreadyExistsException("email already exists");
-		}
 		
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		

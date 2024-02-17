@@ -12,7 +12,7 @@ public interface CouponService {
 	
 	Coupon getCouponByCouponCode(String couponCode);
 	
-	Coupon useCouponCode(Long couponId,Long userId);
+	Coupon useCouponCode(Long couponId,String username);
 	
 	List<Coupon> getAllCoupon();
 	

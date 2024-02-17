@@ -30,7 +30,6 @@ import com.hostmdy.cinema.repository.MovieGenereRepository;
 import com.hostmdy.cinema.repository.MovieRepository;
 import com.hostmdy.cinema.repository.RoleRepository;
 import com.hostmdy.cinema.domain.Theater;
-import com.hostmdy.cinema.domain.User;
 import com.hostmdy.cinema.domain.security.Role;
 import com.hostmdy.cinema.repository.SeatRepository;
 import com.hostmdy.cinema.repository.ShowTimeRepository;

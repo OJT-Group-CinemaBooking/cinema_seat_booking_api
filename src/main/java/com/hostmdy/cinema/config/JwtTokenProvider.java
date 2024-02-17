@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class JwtTokenProvider {
-	private static final long EXPIRATION = 3_600_000;//1hr
+	private static final long EXPIRATION = 7_200_000;//2hr
 	private static final SecretKey SECRET_KEY = Jwts.SIG.HS512.key().build();
 	
 	public String generateToken(Authentication authentication) {
