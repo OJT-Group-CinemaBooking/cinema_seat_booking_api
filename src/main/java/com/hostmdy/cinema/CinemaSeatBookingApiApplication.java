@@ -124,6 +124,14 @@ public class CinemaSeatBookingApiApplication implements CommandLineRunner{
 //			role = roleRepository.save(role);
 //			log.info("role: {} is created",role.getName());
 //		}
+//
+////		User user1 = new User();
+////		user1.setFirstname("Mg");
+////		user1.setLastname("Mg");
+////		user1.setUsername("mm001");
+////		user1.setEmail("kazuyasakurama@gmail.com");
+////		user1.setPassword("1234");
+////		userService.createUser(user1);
 //		
 //		// generes data
 //		Genere action = new Genere();
