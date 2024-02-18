@@ -10,12 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hostmdy.cinema.domain.User;
 import com.hostmdy.cinema.domain.security.Role;
 import com.hostmdy.cinema.domain.security.UserRoles;
+import com.hostmdy.cinema.exception.DatabaseResourceNotFoundException;
 import com.hostmdy.cinema.repository.RoleRepository;
 import com.hostmdy.cinema.repository.UserRepository;
 import com.hostmdy.cinema.service.OTPService;
 import com.hostmdy.cinema.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
@@ -96,6 +98,25 @@ public class UserServiceImpl implements UserService {
 	public void deleteUserById(Long userId) {
 		// TODO Auto-generated method stub
 		userRepository.deleteById(userId);
+	}
+
+	@Override
+	public User updateUser(User user) {
+		// TODO Auto-generated method stub
+		Optional<User> userOptional = userRepository.findById(user.getId());
+		
+		if(userOptional.isEmpty()) {
+			throw new DatabaseResourceNotFoundException("user","Id","userwith id "+ user.getId()+" is not found");
+		}
+		
+		User previousUser = userOptional.get();
+		
+		previousUser.setFirstname(user.getFirstname());
+		previousUser.setLastname(user.getLastname());
+		previousUser.setEmail(user.getEmail());
+		
+		
+		return saveUser(previousUser);
 	}
 
 }

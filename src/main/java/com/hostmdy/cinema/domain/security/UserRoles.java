@@ -30,6 +30,7 @@ public class UserRoles {
 
 	@ManyToOne
 	@JoinColumn(name = "role_id")
+	@JsonIgnore
 	private Role role;
 
 	public UserRoles(User user, Role role) {
