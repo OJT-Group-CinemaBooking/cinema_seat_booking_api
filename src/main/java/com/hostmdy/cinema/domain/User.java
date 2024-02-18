@@ -75,6 +75,7 @@ public class User implements UserDetails {
 	private Set<OneTimePassword> otps = new HashSet<>();
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<UserRoles> userRoles = new HashSet<>();
 
 	@PrePersist
