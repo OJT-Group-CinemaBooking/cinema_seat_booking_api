@@ -108,7 +108,7 @@ public class UserController {
 		if (user.getId() == null) {
 			return ResponseEntity.badRequest().build();
 		}
-		return ResponseEntity.status(201).body(userService.saveUser(user));
+		return ResponseEntity.status(201).body(userService.updateUser(user));
 	}
 
 	@DeleteMapping("/{userId}/delete")
