@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hostmdy.cinema.domain.Crew;
 import com.hostmdy.cinema.domain.Genere;
@@ -43,7 +44,8 @@ public class MovieServiceImpl implements MovieService{
 	@Override
 	public List<Movie> getAllMovie() {
 		// TODO Auto-generated method stub
-		return (List<Movie>) movieRepository.findByOrderByCreatedAtDesc();
+		List<Movie> movieList = (List<Movie>) movieRepository.findByOrderByCreatedAtDesc();
+		return movieList.stream().sorted((m1,m2) -> m1.getReleaseDate().isAfter(m2.getReleaseDate())? 1 : -1).toList();
 	}
 
 	@Override
@@ -77,6 +79,7 @@ public class MovieServiceImpl implements MovieService{
 	}
 
 	@Override
+	@Transactional
 	public Movie addGenere(Long movieId, List<Genere> genereList) {
 		// TODO Auto-generated method stub
 		Movie movie = getMovieById(movieId).get();
